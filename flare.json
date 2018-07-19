@@ -1,0 +1,45 @@
+{
+ "name": "main",
+ "color":"'red'",
+ "padding":2,
+ "children": [
+  {
+   "name": " ",
+   "color":"'blue'",
+   "padding":100,
+   "children": [
+    {
+     "name": "CurrentProjects",
+     "color":"green",
+     "padding":100,
+     "children": [
+      {"name": "Resoldre", "color":"white", "padding":2, "children": [{"name":"text", "color":"white", "padding":2, "size": 1}]},
+      {"name": "Muritz","color":"white",  "padding":2, "size": 1},
+      {"name": "WeightedMuritz","color":"white",  "padding":2, "size": 1},
+      {"name": "CROSTA","color":"white",  "padding":2, "size": 1}
+     ]
+    },
+    {
+     "name": "Resume",
+     "color":"green",
+     "padding":100,
+     "children": [
+      {"name": "Education","color":"white", "padding":2, "size": 1},
+      {"name": "Experience","color":"white", "padding":2, "size": 1},
+      {"name": "Conferences","color":"white", "padding":2, "size": 1},
+      {"name": "Other","color":"white", "padding":2, "size": 1}
+     ]
+    },
+    {
+     "name": "Publications",
+     "color":"green",
+     "padding":2,
+     "children": [
+      {"name": "Sad", "color":"white", "padding":2, "size": 15}
+     ]
+    }
+   ]
+  }
+ ]
+}
+
