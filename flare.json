@@ -2,11 +2,13 @@
  "name": "main",
  "color":"'red'",
  "padding":2,
+ "img":"images/surfer.png",
  "children": [
   {
    "name": " ",
    "color":"'blue'",
    "padding":100,
+   "img":"images/surfer.png",
    "children": [
     {
      "name": "CurrentProjects",
