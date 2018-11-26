@@ -2,39 +2,50 @@
 <meta charset="utf-8">
 <html lang="en-US"> <!-- This element is the root element of an HTML page -->
 <head> 
+
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-MK67NKZ"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-753645-14"></script>
+
     <meta charset="UTF-8">
     <meta name="author" content="Bernat Bramon Mora">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-           body {
-               font-family: georgia;
-               background-color: white;
-               padding-top: 1%;
-               padding-bottom: 1%;
-               padding-left: 4%;
-               padding-right: 4%;
-           }
-           h1 {
-               font-size:8vw;
-           }
-           p {
-               font-size:2vw;
-           }
-    </style>
+
+    <!-- Add bootstrap style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <!-- Load font awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+        crossorigin="anonymous"></script>
+    <!-- Load academic icons -->
+    <link rel="stylesheet" href="othercss/style.css">
+
 </head>
 
 <body>
-<p>List of publications that resize following the browser window; check out how the font size scales.The structure of ecological networks---the way interactions are distributed among consumers and resources---has been shown to vary in space and time\cite{baiser2012geographic, poisot2015beyond}. Known drivers of this variation are that species composition is affected by environmental conditions, dispersal limitations, and historical contingencies\cite{currie2004predictions, thompson2005energy, petchey2010predicting}. Ecological interactions also vary over time and from one location to another in accordance with local changes in species abundances and traits\cite{poisot2015beyond}, as well as due to other intrinsic processes producing ongoing extinctions in the absence of perturbations\cite{allhoff2015evolutionary}. The nature of environmental variability in different habitats might also shape ecological networks in different ways. For instance, communities experiencing high seasonality, such as stream and lake food webs, present a strong latitudinal gradient in the number of prey and predators per species\cite{cirtwill2015latitudinal}. Moreover, the effects of disturbances like invasive species and habitat fragmentation can introduce additional variability that can also lead to changes in network structure\cite{morris2010anthropogenic, aizen2008invasive, aizen2012specialization}. Differences in the sampling methods can also lead to changes in the data collected, with some techniques making it hard to observe weak links in particular\cite{goldwasser1997sampling}.</p>
 
-<p>Despite this observed variability, many types of ecological networks also showcase a variety of common structural properties across environments\cite{cirtwill2015latitudinal, dunne2002food, williams2002two}. For food webs, examples include relatively short food-chains\cite{lawton1989food} and a roughly constant fraction of top, intermediate, and basal species\cite{hall1993food}. The observation of these common structural properties might suggest the existence of general rules driving or constraining the assembly of all ecological communities\cite{piechnik2008food, holt2009toward, williams2010simple, gravel2011trophic, cirtwill2015knowledge}. Some such rules are thought to be the result of energetic or metabolic constraints in the way individual organisms process energy and materials, which could translate into some of the scaling relations observed across ecosystems\cite{hatton2015predator, brown2004toward}. Aspects of network structure have also been linked to ecosystems' robustness to species extinctions\cite{dunne2002network, saavedra2011strong}, persistence\cite{stouffer2010understanding, stouffer2011compartmentalization, gravel2011persistence} and dynamical stability\cite{thebault2010stability, allesina2012stability}, which has led to some arguing that stability and feasibility are additional constraints shaping these ecological communities\cite{borrelli2015selection}.</p>
+    <div class="container">
+        <div class="row pb-1" id="latest-publications-row"></div>
+    </div>
 
-<p>Notably, the aforementioned structural variability and commonality observed across environments need not be incompatible, though they are often treated as such\cite{bluthgen2010network}. Indeed, one heretofore unexplored idea that could reconcile these two perspectives is the existence of a common `backbone of interactions' underlying all ecological communities. Conceptually, this backbone would constitute a set of connected species within every network that play similar ecological roles and that also interact with each other in a similar manner. Extrinsic and intrinsic differences, like environmental variability or variation between local species pools, would then introduce idiosyncrasies in realized community assembly and add noise to and around the backbone.</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+crossorigin="anonymous"></script>
+<script src="otherjs/vendors/jquery-3.3.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+crossorigin="anonymous"></script>
+<script src="otherjs/publications.js"></script>
 
-<p>While a backbone of interactions shared across disparate food webs might be a compelling idea, current methods for comparing network structure across communities lack the power to identify such a level of organization. In particular, existing methods are generally based around the comparison of a library of different descriptors of network structure\cite{williams2000simple, dunne2002network, stouffer2007evidence, stouffer2011role}; however, these descriptors are summary statistics at the network level and mostly overlook the actual way ecological interactions are distributed within a network. Alternatively, one potential way to identify a backbone is by directly aligning networks in such a way as to pair up species from the different communities that play similar ecological roles (Fig.\ 1\textit{A}). Doing this network alignment across a large enough dataset, the backbone of interactions could emerge as a substructure that is consistently aligned across environments.</p>
-
-<p>Recent advances in network science have provided multiple methods for aligning complex networks\cite{flannick2006graemlin, singh2007pairwise, kuchaiev2010topological, patro2012global, poisot2012dissimilarity}. Most of these methods, however, focus on aligning undirected networks, making them ill-suited for ecological networks like predator-prey food webs in which the direction of interactions is particularly relevant\cite{allesina2015predicting}. In this study, we develop a new alignment technique specifically designed for directed networks, and we then use it to test whether or not there is a backbone of interactions across food webs. For this test, we align a collection of over 400 food webs that were compiled from multiple ecosystems---including different types of freshwater, marine and terrestrial ecosystems. For every pair of food webs, our method matches their constituent species based on their role similarity, which measures how similarly any two species are embedded within their respective communities. In particular, our method provides us with two key pieces of information. The first is a metric describing the ``quality'' of the alignment between food webs, which represents an overall measure of how similar two networks are to each other. The second consists of a list of the corresponding species-species pairings between those food webs, specifying the actual mapping of the alignment between them.</p>
-
-<p>Here, we use the alignment quality as a metric with which to test for structural differences across ecosystems. In particular, we find that food webs from different ecosystems present significantly different network structures. We then leverage the lists of species-species pairings to identify subsets of species within every food web that align better than the rest, since these species could well constitute a backbone (Fig.\ 1\textit{B}). Next, we test whether or not these subsets of species are actually linked together, and we observe that they do indeed form a connected backbone of interactions (Fig.\ 1\textit{B}). To determine what these connected backbones actually look like, we finally explore the overlap of the backbones between all aligned networks to reveal the hidden structures that underly our dataset (Fig.\ 1\textit{C}).</p>
+<script>        
+// Fill in papers
+for (var i = 0; i < 3; i++) {
+    document.getElementById("latest-publications-row").appendChild(createPaper(papers.papers[i]))
+}
+</script>
+<script src="otherjs/vendors/jquery-easing.min.js"></script>
+<script src="otherjs/themejs.js"></script>
 
 </body>
+
+

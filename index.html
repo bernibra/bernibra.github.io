@@ -9,7 +9,8 @@
     <meta name="keywords" content="HTML, CSS, XML, JavaScript, D3">
     <meta name="author" content="Bernat Bramon Mora">
     <!--<meta http-equiv="refresh" content="100">-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 
 
     <style>
@@ -34,7 +35,7 @@
         }
 
         .label {
-          font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+          font: 11px roboto;
           text-anchor: middle;
           text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
         }
@@ -149,7 +150,7 @@
     var g = svg.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
     var color = d3.scaleLinear()
-        .domain([-1, 5])
+        .domain([-1, 4])
         .range(["hsl(225,80%,80%)", "white"])
         .interpolate(d3.interpolateHcl);
 
@@ -189,24 +190,25 @@
                           zoom(d);
                           d3.event.stopPropagation()};
             })
-        .on("mouseover", function(d) { if(focus.depth==0 && d.depth==1) d3.select("#foto").attr("xlink:href", "images/surfer_blur2.png"); })
-        .on("mouseout", function(d) { if(focus.depth==0 && d.depth==1) d3.select("#foto").attr("xlink:href", "images/surfer.png"); })
+        .on("mouseover", function(d) { if(focus.depth==0 && d.depth==1) d3.select("#foto-1").attr("xlink:href", "images/surfer_blur2.png"); })
+        .on("mouseout", function(d) { if(focus.depth==0 && d.depth==1) d3.select("#foto-1").attr("xlink:href", "images/surfer.png"); })
         .style("display", function(d) { return (d.depth<=focus.depth+1) ? "inline" : "none"; });
 
       var circle = nodeEnter.append("svg:circle")
       .attr("r", function(d) {d.size})
       .style("fill", function(d) { return color(d.depth); })
       .attr("x", function(d) {d.x})
-      .attr("y", function(d) {d.y});
+      .attr("y", function(d) {d.y})
+      .style("fill-opacity", function(d) { return (d.depth<=focus.depth+1) ? 1 : 0; })
+      .style("display", function(d) { return (d.depth<=focus.depth+1) ? "inline" : "none"; });
 
 
       // Append images
       var images = nodeEnter
-        .filter(function(d) {return d.depth==1})
+        .filter(function(d) {return d.data.switch=="on"})
         .append("svg:image")
-        .attr("id", "foto")
+        .attr("id", function(d) {return "foto-"+d.depth;})
         .attr("xlink:href",  function(d) { return d.data.img;})
-        //.each(function(d) {console.log(d.r); console.log(d.y); console.log(diameter);})
         .attr("height", diameter-margin*2)
         .attr("width", diameter-margin*2)
         .attr("x", 0)
@@ -221,7 +223,7 @@
         .attr("class", "label")
         .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
         .style("display", function(d) { return d.parent === root ? "inline" : "none"; })
-        .style("font-family", "georgia")
+        .style("font-family", "roboto")
         .style("text-shadow", "none")
         .style("font-size", fzinitial)
         .text(function(d) { return d.data.name; });
@@ -271,6 +273,13 @@
             .on("start", function(d) { if (d.depth<=focus.depth+1)  this.style.display = "inline"; })
             .on("end", function(d) { if (d.depth>focus.depth+1)  this.style.display = "none"; });
 
+            trans.selectAll("circle")
+            .filter(function(d) { return (d.depth<=focus.depth+1)  || this.style.display === "inline"; })
+            .delay(slapse)
+            .style("fill-opacity", function(d) { return (d.depth<=focus.depth+1) ? 1 : 0; })
+            .on("start", function(d) { if (d.depth<=focus.depth+1)  this.style.display = "inline"; })
+            .on("end", function(d) { if (d.depth>focus.depth+1)  this.style.display = "none"; });
+
             trans.selectAll("text")
             .filter(function(d) { return d.parent === focus && this.style.display !== "inline"; })
             .delay(mlapse)
@@ -295,7 +304,7 @@
                                           else{return d3.interpolate(fzinitial, fzfocus);}
                                         });
 
-            var maincircle = d3.selectAll("#foto");
+            var maincircle = d3.selectAll("#foto-1");
             if (focus.depth==0){maincircle.transition().delay(mlapse).attr("xlink:href", "images/surfer.png");}else{ maincircle.attr("xlink:href", "images/surfer_blur2.png");}
 
             if(focus.children.length==1 && focus!==root){
