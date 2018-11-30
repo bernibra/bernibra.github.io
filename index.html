@@ -150,7 +150,7 @@
     var g = svg.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
     var color = d3.scaleLinear()
-        .domain([-1, 4])
+        .domain([0, 4])
         .range(["hsl(225,80%,80%)", "white"])
         .interpolate(d3.interpolateHcl);
 
@@ -165,7 +165,9 @@
 
       var root = d3.hierarchy(root)
           .sum(function(d) { return d.size; })
-          .sort(function(a, b) { return b.value - a.value; });
+          .sort(function(a, b) { console.log(a);
+                                 console.log(b); 
+                                return b.value - a.value; });
 
       var focus = root,
           nodes_obj = pack(root).descendants(),
@@ -195,12 +197,12 @@
         .style("display", function(d) { return (d.depth<=focus.depth+1) ? "inline" : "none"; });
 
       var circle = nodeEnter.append("svg:circle")
-      .attr("r", function(d) {d.size})
-      .style("fill", function(d) { return color(d.depth); })
-      .attr("x", function(d) {d.x})
-      .attr("y", function(d) {d.y})
-      .style("fill-opacity", function(d) { return (d.depth<=focus.depth+1) ? 1 : 0; })
-      .style("display", function(d) { return (d.depth<=focus.depth+1) ? "inline" : "none"; });
+        .attr("r", function(d) {d.size})
+        .style("fill", function(d) { return d.data.color; })
+        .attr("x", function(d) {d.x})
+        .attr("y", function(d) {d.y})
+        .style("fill-opacity", function(d) { return (d.depth<=focus.depth+1) ? 1 : 0; })
+        .style("display", function(d) { return (d.depth<=focus.depth+1) ? "inline" : "none"; });
 
 
       // Append images
@@ -212,7 +214,8 @@
         .attr("height", diameter-margin*2)
         .attr("width", diameter-margin*2)
         .attr("x", 0)
-        .attr("y", 0);
+        .attr("y", 0)
+        .style("opacity", function(d) { return (d.depth<=focus.depth+1) ? 1 : 0; });
 
 
       var text = g.selectAll("text")
@@ -280,6 +283,13 @@
             .on("start", function(d) { if (d.depth<=focus.depth+1)  this.style.display = "inline"; })
             .on("end", function(d) { if (d.depth>focus.depth+1)  this.style.display = "none"; });
 
+            trans.selectAll("image")
+            .filter(function(d) { return (d.depth<=focus.depth+1)  || this.style.display === "inline"; })
+            .delay(slapse)
+            .ease(d3.easeLinear).style("opacity", function(d) { return (d.depth<=focus.depth+1) ? 1 : 0 })
+            .on("start", function(d) { if (d.depth<=focus.depth+1)  this.style.display = "inline"; })
+            .on("end", function(d) { if (d.depth>focus.depth+1)  this.style.display = "none"; });
+
             trans.selectAll("text")
             .filter(function(d) { return d.parent === focus && this.style.display !== "inline"; })
             .delay(mlapse)
@@ -304,8 +314,16 @@
                                           else{return d3.interpolate(fzinitial, fzfocus);}
                                         });
 
+
+            /*d3.selectAll("images").filter(function(d) { return (d.depth<=focus.depth+1)  || this.style.display === "inline"; })
+            .transition().delay(slapse).duration(mlapse).ease(d3.easeLinear)
+            .style("opacity", function(d) { return (d==focus) ? 1 : 0; });*/
+
             var maincircle = d3.selectAll("#foto-1");
             if (focus.depth==0){maincircle.transition().delay(mlapse).attr("xlink:href", "images/surfer.png");}else{ maincircle.attr("xlink:href", "images/surfer_blur2.png");}
+
+maincircle.transition().delay(slapse).duration(mlapse).ease(d3.easeLinear).style("opacity", 0);
+
 
             if(focus.children.length==1 && focus!==root){
                d3.select("#htmlfile").attr("src",d.data.name+".html").style("z-index", 2000).transition().delay(mlapse+slapse).style("display", "block");
