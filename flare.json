@@ -1,72 +1,72 @@
 {
  "name": "main",
- "color":"'red'",
  "padding":2,
  "switch":"off",
  "img":"images/surfer.png",
- "color":"#eae7dc",
+ "color":"white",
  "children": [
   {
    "name": " ",
-   "color":"#eae7dc",
+   "color":"white",
    "padding":80,
    "switch":"on",
    "img":"images/surfer.png",
    "children": [
     {
      "name": "About",
-     "color":"#d8c3a5",
+     "color":"white",
      "padding":2,
      "switch":"on",
      "img":"images/about2.png",
      "children": [
-      {"name": "Sad", "color":"#f7f7f7", "padding":2, "switch":"on","img":"images/about.png", "size": 30}
+      {"name": "Sad", "color":"white", "padding":2, "switch":"on","img":"images/about.png", "size": 30}
      ]
     },
     {
      "name": "My work",
-     "color":"#d8c3a5",
+     "color":"white",
      "padding":2,
+     "img":"images/mywork2.png",
      "switch":"off",
      "children": [
 	    {
 	     "name": "Publications",
-	     "color":"#8e8d8a",
+	     "color":"white",
 	     "padding":2,
 	     "switch":"off",
 	     "children": [
-	      {"name": "articles", "color":"#f7f7f7", "padding":2, "size": 30}
+	      {"name": "articles", "color":"white", "padding":2, "size": 30}
 	     ]
 	    },
 	    {
 	     "name": "Projects",
-	     "color":"#8e8d8a",
+	     "color":"white",
 	     "padding":80,
 	     "switch":"off",
 	     "children": [
-	      {"name": "Resoldre", "color":"#f7f7f7", "padding":2,"switch":"off","children": [
-		{"name":"text", "color":"#f4a582", "padding":2, "switch":"off" , "size": 1}
+	      {"name": "Resoldre", "color":"white", "padding":2,"switch":"off","children": [
+		{"name":"text", "color":"white", "padding":2, "switch":"off" , "size": 1}
 		 ]},
-	      {"name": "Muritz","color":"#f7f7f7",  "padding":2,"switch":"off", "size": 1},
-	      {"name": "WeightedMuritz","color":"#f7f7f7",  "padding":2,"switch":"off", "size": 1},
-	      {"name": "CROSTA","color":"#f7f7f7",  "padding":2,"switch":"off", "size": 1}
+	      {"name": "Muritz","color":"white",  "padding":2,"switch":"off", "size": 1},
+	      {"name": "WeightedMuritz","color":"white",  "padding":2,"switch":"off", "size": 1},
+	      {"name": "CROSTA","color":"white",  "padding":2,"switch":"off", "size": 1}
 	     ]
 	    },
 	    {
 	     "name": "Resume",
-	     "color":"#8e8d8a",
+	     "color":"white",
 	     "padding":2,
 	     "children": [
-	      {"name": "Education","color":"#f7f7f7", "padding":2,"switch":"off", "size": 30}
+	      {"name": "Education","color":"white", "padding":2,"switch":"off", "size": 30}
 	     ]
 	    },
 	    {
 	     "name": "Conferences",
-	     "color":"#8e8d8a",
+	     "color":"white",
 	     "padding":2,
 	     "switch":"off",
 	     "children": [
-	      {"name": "articles", "color":"#f7f7f7", "padding":2, "size": 30}
+	      {"name": "articles", "color":"white", "padding":2, "size": 30}
 	     ]
 	    }
      ]

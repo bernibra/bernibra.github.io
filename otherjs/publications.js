@@ -1,11 +1,22 @@
 var papers = {"papers": [
   {
+    "title": "Unmasking structural patterns in incidence matrices: an application to ecological data",
+    "authors": ["Bernat Bramon Mora", "Giulio V. Dalla Riva", "Daniel B. Stouffer"],
+    "journal": "Journal of the Royal Society Interface",
+    "date": "Accepted",
+    "vol": " ",
+    "pages": " ",
+    "doi": " ",
+    "localFileName": "jrsi2019",
+    "oa": true
+  },
+  {
     "title": "pymfinder: a tool for the motif analysis of binary and quantitative complex networks",
     "authors": ["Bernat Bramon Mora", "Alyssa R. Cirtwill", "Daniel B. Stouffer"],
     "journal": "bioRxiv",
     "date": "Sep 2018",
-    "vol": " ",
-    "pages": " ",
+    "vol": "-",
+    "pages": "-",
     "doi": "https://doi.org/10.1101/364703",
     "localFileName": "364703",
     "oa": true
@@ -15,8 +26,8 @@ var papers = {"papers": [
     "authors": ["Matthew C. Hutchinson", "Bernat Bramon Mora", "Shai Pilosof", "Allison K. Barner", "Sonia Kéfi", "Elisa Thébault", "Pedro Jordano", "Daniel B. Stouffer"],
     "journal": "Functional Ecology",
     "date": "November 2018",
-    "vol": " ",
-    "pages": " ",
+    "vol": "0",
+    "pages": "1--12",
     "doi": "https://doi.org/10.1111/1365-2435.13237",
     "localFileName": "Hutchinson_et_al-2018-Functional_Ecology",
     "oa": true
@@ -26,7 +37,7 @@ var papers = {"papers": [
     "authors": ["Bernat Bramon Mora", "Dominique Gravel", "Luis J. Gilarranz", "Timothée Poisot", "Daniel B. Stouffer"],
     "journal": "Nature Communications",
     "date": "July 2018",
-    "vol": " ",
+    "vol": "-",
     "pages": "9:2603",
     "doi": "https://doi.org/10.1038/s41467-018-05056-0",
     "localFileName": "s41467-018-05056-0",
