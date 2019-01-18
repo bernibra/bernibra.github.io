@@ -276,8 +276,8 @@
                           zoom(d);
                           d3.event.stopPropagation()};
             })
-        .on("mouseover", function(d) { d3.select("#foto-0").attr("xlink:href", "images/surfer_blur5.png"); })
-        .on("mouseout", function(d) { if(focus.depth==0 && d.depth==1) d3.select("#foto-0").attr("xlink:href", "images/surfer.png"); })
+        .on("mouseover", function(d) { d3.select("#foto-0").attr("xlink:href", "images/surfer_blur2.svg"); })
+        .on("mouseout", function(d) { if(focus.depth==0 && d.depth==1) d3.select("#foto-0").attr("xlink:href", "images/surfer.svg"); })
         .style("display", function(d) { return (d.depth<=focus.depth+1) ? "inline" : "none"; })
         .style("stroke", function(d) {return (d.depth<=2) ? "#525252": "#fff7fb"});
 
