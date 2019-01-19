@@ -388,6 +388,7 @@
             trans.selectAll("text")
             .filter(function(d) { return d.parent === focus && this.style.display !== "inline"; })
             .delay(mlapse)
+            .duration(llapse)
             .style("fill-opacity", function(d) { return d.parent === focus ? 1 : 0; })
             .styleTween("display", function() { return d3.interpolate("none", "inline"); });
 
