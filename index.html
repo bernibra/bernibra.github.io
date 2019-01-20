@@ -23,6 +23,8 @@
           padding-right: 0%;
         }
 
+        @import url(//db.onlinewebfonts.com/c/dff0339343744b75e0d45c13e7e4bf67?family=Andale+Mono+MT+Std);
+
         #firstpage1 {
             font-size: 56px;
         }
@@ -186,8 +188,8 @@
     <div id="content"></div>-->
 </div>
 
-<script type="text/javascript" src="d3/d3.js"></script>
-<!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
+<!--<script type="text/javascript" src="d3/d3.js"></script>-->
+<script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
 
 
@@ -276,17 +278,17 @@
                           zoom(d);
                           d3.event.stopPropagation()};
             })
-        .on("mouseover", function(d) { d3.select("#foto-0").attr("xlink:href", "images/surfer_blur2.svg"); })
-        .on("mouseout", function(d) { if(focus.depth==0 && d.depth==1) d3.select("#foto-0").attr("xlink:href", "images/surfer.svg"); })
         .style("display", function(d) { return (d.depth<=focus.depth+1) ? "inline" : "none"; })
-        .style("stroke", function(d) {return (d.depth<=2) ? "#525252": "#fff7fb"});
+        .style("stroke", function(d) {return (d.depth<=2) ? "#525252": "#fff7fb"})
+        .on("mouseover", function(d) { if (focus==root || focus.depth==1){ d3.select("#foto-0").attr("xlink:href", "images/surfer_blur2.png");} })
+        .on("mouseout", function(d) { if (focus==root || focus.depth==1){ d3.select("#foto-0").attr("xlink:href", "images/surfer.png"); }});
 
       var circle = nodeEnter.append("svg:circle")
         .attr("r", function(d) {d.size})
         .style("fill", function(d) { return d.data.color; })
         .attr("x", function(d) {d.data.x})
         .attr("y", function(d) {d.data.y})
-        .style("fill-opacity", function(d) { return (d.depth<=focus.depth+1) ? 1 : 0; })
+        .style("fill-opacity", function(d) { return (d.depth<=focus.depth) ? 1 : 0; })
         .style("display", function(d) { return (d.depth<=focus.depth+1) ? "inline" : "none"; });
 
 
@@ -301,8 +303,7 @@
         .attr("x", 0)
         .attr("y", 0)
         .attr("pointer-events", "none")
-        .style("opacity", function(d) { return (d.depth<=focus.depth+1) ? 1 : 0; });
-
+        .style("opacity", function(d) { return (d.depth<=focus.depth) ? 1 : 0; });
 
       var text = g.selectAll("text")
         .data(nodes_obj)
@@ -326,7 +327,6 @@
                     });
 
       zoomTo([root.x, root.y, root.r * smallr *2 + margin]);
-
 
       function zoom(d) {
             var focus0 = focus; focus = d;
@@ -362,26 +362,46 @@
             .on("start", function(d) { if (d.depth<=focus.depth+1)  this.style.display = "inline"; })
             .on("end", function(d) { if (d.depth>focus.depth+1)  this.style.display = "none"; });
 
-            trans.selectAll("circle")
-            .filter(function(d) { return (d.depth<=focus.depth+1)  || this.style.display === "inline"; })
-            .delay(slapse)
-            .style("fill-opacity", function(d) { return (d.depth<=focus.depth+1) ? 1 : 0; })
-            .on("start", function(d) { if (d.depth<=focus.depth+1)  this.style.display = "inline"; })
-            .on("end", function(d) { if (d.depth>focus.depth+1)  this.style.display = "none"; });
+            if (focus===root){
+                trans.selectAll("circle")
+                .filter(function(d) { return (d.depth<=focus.depth+1)  || this.style.display === "inline"; })
+                .delay(function(d) {return (d.depth==1) ? 0:slapse; })
+                .style("fill-opacity", function(d) { return (d.depth<=focus.depth) ? 1 : 0; })
+                .on("start", function(d) { if (d.depth<=focus.depth+1)  this.style.display = "inline"; })
+                .on("end", function(d) { if (d.depth>focus.depth+1)  this.style.display = "none"; });
 
-            trans.selectAll("image")
-            .filter(function(d) { if (focus.depth>=3){
-                                      return ((d.depth<=focus.depth+1)  || this.style.display === "inline") && (d.data.name!="Projects"); 
-                                  }else{
-                                      return (d.depth<=focus.depth+1)  || this.style.display === "inline"; 
-                                  }})
-            .delay(slapse)
-            .ease(d3.easeLinear).style("opacity", function(d) { return (d.depth<=focus.depth+1) ? 1 : 0 })
-            .on("start", function(d) { if (d.depth<=focus.depth+1)  this.style.display = "inline"; })
-            .on("end", function(d) { if (d.depth>focus.depth+1)  this.style.display = "none"; });
+                trans.selectAll("image")
+                .filter(function(d) { if (focus.depth>=3){
+                                          return ((d.depth<=focus.depth+1)  || this.style.display === "inline") && (d.data.name!="Projects"); 
+                                      }else{
+                                          return (d.depth<=focus.depth+1)  || this.style.display === "inline"; 
+                                      }})
+                .delay(slapse)
+                .ease(d3.easeLinear).style("opacity", function(d) { return (d.depth<=focus.depth) ? 1 : 0 })
+                .on("start", function(d) { if (d.depth<=focus.depth)  this.style.display = "inline"; })
+                .on("end", function(d) { if (d.depth>focus.depth)  this.style.display = "none"; });
+            }else{
+                trans.selectAll("circle")
+                .filter(function(d) { return (d.depth<=focus.depth+1)  || this.style.display === "inline"; })
+                .delay(slapse)
+                .style("fill-opacity", function(d) { return (d.depth<=focus.depth+1) ? 1 : 0; })
+                .on("start", function(d) { if (d.depth<=focus.depth+1)  this.style.display = "inline"; })
+                .on("end", function(d) { if (d.depth>focus.depth+1)  this.style.display = "none"; });
+
+                trans.selectAll("image")
+                .filter(function(d) { if (focus.depth>=3){
+                                          return ((d.depth<=focus.depth+1)  || this.style.display === "inline") && (d.data.name!="Projects"); 
+                                      }else{
+                                          return (d.depth<=focus.depth+1)  || this.style.display === "inline"; 
+                                      }})
+                .delay(slapse)
+                .ease(d3.easeLinear).style("opacity", function(d) { return (d.depth<=focus.depth+1) ? 1 : 0 })
+                .on("start", function(d) { if (d.depth<=focus.depth+1)  this.style.display = "inline"; })
+                .on("end", function(d) { if (d.depth>focus.depth+1)  this.style.display = "none"; });
+            }
 
             if(focus.data.name=="Projects"){
-            d3.select("#foto-3").transition().delay(slapse).duration(2*slapse).ease(d3.easeLinear)
+            d3.select("#foto-4").transition().delay(slapse).duration(2*slapse).ease(d3.easeLinear)
               .style("opacity", 0);
             }
 
@@ -401,6 +421,26 @@
             .attr("dy", function(d) {return  (d.depth<focus.depth)? -600 : d.data.position;})
             .style("font-size", function(d) {return  (d.depth<focus.depth)? fzfocus*2 : fzinitial;});
 
+
+            trans.selectAll("text")
+            .filter(function(d) { return (this.style.display === "inline") && (d===focus); }).delay(slapse+100)
+            .attrTween("dy", function(d) { if(focus0.depth==3){return d3.interpolate(-600, -300);}
+                                          else{return d3.interpolate(d.data.position, -300);}
+                                        })
+            .styleTween("font-size", function(){ if(focus0.depth==3){return d3.interpolate(fzfocus*2, fzfocus);}
+                                          else{return d3.interpolate(fzinitial, fzfocus);}});
+
+
+            console.log(root.children)
+            /*trans.selectAll("text")
+            .filter(function(d) { return (this.style.display === "inline"); })
+            .delay(function(d){return (d.depth<=focus.depth+1 || d===focus)? 300 : slapse; })
+            .style("fill-opacity", function(d) {return (d.depth<=focus.depth+1 || d===focus)? 1 : 0; })
+            .on("start", function(d) {this.style.diplay = "inline"})
+            .on("end", function(d) { if (d.depth>focus.depth+1 && d!==focus) this.style.display = "none"; })
+            .attr("dy", function(d) {return  (d.depth<focus.depth)? -600 : d.data.position;})
+            .style("font-size", function(d) {return  (d.depth<focus.depth)? fzfocus*2 : fzinitial;});
+
             trans.selectAll("text")
             .filter(function(d) { return (this.style.display === "inline") && (d===focus); }).delay(slapse+100)
             .attrTween("dy", function(d) { if(focus0.depth==3){return d3.interpolate(-600, -300);}
@@ -408,7 +448,7 @@
                                         })
             .styleTween("font-size", function(){ if(focus0.depth==3){return d3.interpolate(fzfocus*2, fzfocus);}
                                           else{return d3.interpolate(fzinitial, fzfocus);}
-                                        });
+                                        });*/
 
 
             /*d3.selectAll("images").filter(function(d) { return (d.depth<=focus.depth+1)  || this.style.display === "inline"; })
@@ -426,11 +466,11 @@
             if(focus.depth==0){
                d3.select("#firstpage1").transition().delay(mlapse).style("opacity", 1);
                d3.selectAll("#firstpage2").transition().delay(mlapse).style("opacity", 1);
-               maincircle.transition().delay(llapse).attr("xlink:href", "images/surfer.png");
+               maincircle.attr("xlink:href", "images/surfer2.png");
             }else{
                d3.select("#firstpage1").transition().delay(0).duration(mlapse).style("opacity", 0);
                d3.selectAll("#firstpage2").transition().delay(0).duration(mlapse).style("opacity", 0);
-               maincircle.attr("xlink:href", "images/surfer_blur5.png");
+               maincircle.attr("xlink:href", "images/surfer_blur2.png");
             }
 
             /*if(focus.depth==0){
