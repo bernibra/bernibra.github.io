@@ -1,76 +1,105 @@
 {
  "name": "main",
  "padding":2,
- "switch":"off",
- "img":"images/surfer.png",
- "color":"white",
+ "switch":"on",
+ "img":"images/surfer2.png",
+ "color":"#f0f0f0",
+ "position":-40,
+ "x":470,
+ "y":470,
  "children": [
   {
    "name": " ",
-   "color":"white",
-   "padding":80,
+   "color":"#f0f0f0",
+   "padding":40,
    "switch":"on",
-   "img":"images/surfer.png",
+   "img":"images/surfer_blur2.png",
+   "position":-40,
+   "x":470,
+   "y":470,
    "children": [
     {
      "name": "About",
-     "color":"white",
+     "color":"#f5f5f5",
      "padding":2,
      "switch":"on",
-     "img":"images/about2.png",
+     "img":"images/about.svg",
+     "position":-40,
+     "x":470,
+     "y":140,
      "children": [
-      {"name": "Sad", "color":"white", "padding":2, "switch":"on","img":"images/about.png", "size": 30}
+      {"name": "Sad", "color":"#fff7fb", "padding":2,
+               "size": 30, "position":-40, "x":470, "y":140}
      ]
     },
     {
-     "name": "My work",
-     "color":"white",
+     "name": "Publications",
+     "color":"#f5f5f5",
      "padding":2,
-     "img":"images/mywork2.png",
-     "switch":"off",
+     "switch":"on",
+     "img":"images/publications.svg",
+     "position":-40,
+     "x":190,
+     "y":470,
      "children": [
-	    {
-	     "name": "Publications",
-	     "color":"white",
-	     "padding":2,
-	     "switch":"off",
-	     "children": [
-	      {"name": "articles", "color":"white", "padding":2, "size": 30}
-	     ]
-	    },
-	    {
-	     "name": "Projects",
-	     "color":"white",
-	     "padding":80,
-	     "switch":"off",
-	     "children": [
-	      {"name": "Resoldre", "color":"white", "padding":2,"switch":"off","children": [
-		{"name":"text", "color":"white", "padding":2, "switch":"off" , "size": 1}
-		 ]},
-	      {"name": "Muritz","color":"white",  "padding":2,"switch":"off", "size": 1},
-	      {"name": "WeightedMuritz","color":"white",  "padding":2,"switch":"off", "size": 1},
-	      {"name": "CROSTA","color":"white",  "padding":2,"switch":"off", "size": 1}
-	     ]
-	    },
-	    {
-	     "name": "Resume",
-	     "color":"white",
-	     "padding":2,
-	     "children": [
-	      {"name": "Education","color":"white", "padding":2,"switch":"off", "size": 30}
-	     ]
-	    },
-	    {
-	     "name": "Conferences",
-	     "color":"white",
-	     "padding":2,
-	     "switch":"off",
-	     "children": [
-	      {"name": "articles", "color":"white", "padding":2, "size": 30}
-	     ]
-	    }
+      {"name": "articles", "color":"#fff7fb", "padding":2, "size": 50,
+               "x":190, "y":470, "position":-40}
      ]
-    }]
+    },
+    {
+     "name": "Projects",
+     "color":"#f5f5f5",
+     "padding":10,
+     "switch":"on",
+     "img":"images/projects.svg",
+     "position":-80,
+     "x":470,
+     "y":713.742277328938,
+     "apagar":"si",
+     "children": [
+      {"name": "Random models", "color":"#d0d1e6", "padding":2,"switch":"on", "img":"images/rmodels.svg", 
+           "x":392, "y":705, "position":-70,"children": [
+          {"name":"text", "color":"#d0d1e6", "padding":2, "switch":"off" , "size": 10,
+                "x":392, "y":705, "position":-40}]},
+      {"name": "Alignments","color":"#d0d1e6",  "padding":2,"switch":"on", "img":"images/alignments.svg", "size": 10,
+           "x":548, "y":705, "position":-70,"children": [
+          {"name":"text", "color":"white", "padding":2, "switch":"off" , "size": 10,
+                "x":548, "y":705, "position":-40}]},
+      {"name": "Evolution","color":"#d0d1e6",  "padding":2,"switch":"on", "img":"images/evolution.svg", "size": 10,
+           "x":470, "y":820, "position":-70,"children": [
+          {"name":"text", "color":"white", "padding":2, "switch":"off" , "size": 10,
+                "x":470, "y":820, "position":-40}]},
+      {"name": "CROSTA","color":"#f5f5f5",  "padding":2,"switch":"off", "size": 10,
+           "x":470, "y":599.3466283222208 , "position":-40}]
+    },
+    {
+     "name": "Resume",
+     "color":"#f5f5f5",
+     "padding":2,
+     "switch":"on",
+     "img":"images/resume.svg",
+     "position":-40,
+     "x":470,
+     "y":390,
+     "children": [
+      {"name": "Education","color":"#fff7fb", "padding":2,"switch":"off", "size": 30,
+               "x":470, "y":390 , "position":-40}
+     ]
+    },
+    {
+     "name": "Conferences",
+     "color":"#f5f5f5",
+     "padding":2,
+     "switch":"on",
+     "img":"images/conferences.svg",
+     "position":-50,
+     "x":750,
+     "y":470,
+     "children": [
+      {"name": "talks", "color":"#fff7fb", "padding":2, "size": 50, "x":750, "y":470,  "position":-40}
+     ]
+    }
+   ]
   }
  ]
 }

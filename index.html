@@ -10,9 +10,6 @@
     <meta name="author" content="Bernat Bramon Mora">
     <!--<meta http-equiv="refresh" content="100">-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="//db.onlinewebfonts.com/c/dff0339343744b75e0d45c13e7e4bf67?family=Andale+Mono+MT+Std" rel="stylesheet" type="text/css"/>
-
-
 
     <style>
 
@@ -23,17 +20,6 @@
           padding-left: 0%;
           padding-right: 0%;
         }
-
-        @import url(//db.onlinewebfonts.com/c/dff0339343744b75e0d45c13e7e4bf67?family=Andale+Mono+MT+Std);
-
-	@font-face {font-family: "Andale Mono MT Std";
-	    src: url("//db.onlinewebfonts.com/t/dff0339343744b75e0d45c13e7e4bf67.eot");
-	    src: url("//db.onlinewebfonts.com/t/dff0339343744b75e0d45c13e7e4bf67.eot?#iefix") format("embedded-opentype"),
-	    url("//db.onlinewebfonts.com/t/dff0339343744b75e0d45c13e7e4bf67.woff2") format("woff2"),
-	    url("//db.onlinewebfonts.com/t/dff0339343744b75e0d45c13e7e4bf67.woff") format("woff"),
-	    url("//db.onlinewebfonts.com/t/dff0339343744b75e0d45c13e7e4bf67.ttf") format("truetype"),
-	    url("//db.onlinewebfonts.com/t/dff0339343744b75e0d45c13e7e4bf67.svg#Andale Mono MT Std") format("svg");
-	}
 
         #firstpage1 {
             font-size: 56px;
@@ -147,12 +133,18 @@
             display: inline-block;
             position: relative;
             width: 100%;
-            top:50vh;
             padding-bottom: 100%;
             vertical-align: top;
             overflow: hidden;
-            transform: translate(0%, -50%);
         }
+
+	@media screen and (orientation:portrait) {
+            .svg-container {
+                   top:50vh;
+                   transform: translate(0%, -50%);
+             }
+	}
+
         .svg-content {
             display: inline-block;
             position: absolute;
@@ -258,7 +250,7 @@
         return d.data.padding || 2;
         });
 
-    d3.json("flare2.json", function(error, root) {
+    d3.json("flare.json", function(error, root) {
       if (error) throw error;
 
       var root = d3.hierarchy(root)
@@ -289,7 +281,7 @@
                           d3.event.stopPropagation()};
             })
         .style("display", function(d) { return (d.depth<=focus.depth+1) ? "inline" : "none"; })
-        .style("stroke", function(d) {return (d.depth<=2) ? "#525252": "#fff7fb"})
+        .style("stroke", function(d) { if(d.data.name!="CROSTA"){"#525252"}})
         .on("mouseover", function(d) { if (focus==root || focus.depth==1){ d3.select("#foto-0").attr("xlink:href", "images/surfer_blur2.png");} })
         .on("mouseout", function(d) { if (focus==root || focus.depth==1){ d3.select("#foto-0").attr("xlink:href", "images/surfer.png"); }});
 
@@ -432,6 +424,7 @@
             .style("font-size", function(d) {return  (d.depth<focus.depth)? fzfocus*2 : fzinitial;});
 
 
+
             trans.selectAll("text")
             .filter(function(d) { return (this.style.display === "inline") && (d===focus); }).delay(slapse+100)
             .attrTween("dy", function(d) { if(focus0.depth==3){return d3.interpolate(-600, -300);}
@@ -439,26 +432,6 @@
                                         })
             .styleTween("font-size", function(){ if(focus0.depth==3){return d3.interpolate(fzfocus*2, fzfocus);}
                                           else{return d3.interpolate(fzinitial, fzfocus);}});
-
-
-            console.log(root.children)
-            /*trans.selectAll("text")
-            .filter(function(d) { return (this.style.display === "inline"); })
-            .delay(function(d){return (d.depth<=focus.depth+1 || d===focus)? 300 : slapse; })
-            .style("fill-opacity", function(d) {return (d.depth<=focus.depth+1 || d===focus)? 1 : 0; })
-            .on("start", function(d) {this.style.diplay = "inline"})
-            .on("end", function(d) { if (d.depth>focus.depth+1 && d!==focus) this.style.display = "none"; })
-            .attr("dy", function(d) {return  (d.depth<focus.depth)? -600 : d.data.position;})
-            .style("font-size", function(d) {return  (d.depth<focus.depth)? fzfocus*2 : fzinitial;});
-
-            trans.selectAll("text")
-            .filter(function(d) { return (this.style.display === "inline") && (d===focus); }).delay(slapse+100)
-            .attrTween("dy", function(d) { if(focus0.depth==3){return d3.interpolate(-600, -300);}
-                                          else{return d3.interpolate(d.data.position, -300);}
-                                        })
-            .styleTween("font-size", function(){ if(focus0.depth==3){return d3.interpolate(fzfocus*2, fzfocus);}
-                                          else{return d3.interpolate(fzinitial, fzfocus);}
-                                        });*/
 
 
             /*d3.selectAll("images").filter(function(d) { return (d.depth<=focus.depth+1)  || this.style.display === "inline"; })
