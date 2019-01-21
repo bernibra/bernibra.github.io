@@ -14,23 +14,13 @@
     <style>
 
 	@font-face {
-	  font-family: 'Andale Mono';
+	  font-family: 'League Mono';
 	  src: url('font/LeagueMono-Light.eot'); /* IE9 Compat Modes */
 	  src: url('font/LeagueMono-Light?#iefix') format('embedded-opentype'), /* IE6-IE8 */
 	       url('font/LeagueMono-Light.woff2') format('woff2'), /* Super Modern Browsers */
 	       url('font/LeagueMono-Light.woff') format('woff'), /* Pretty Modern Browsers */
 	       url('font/LeagueMono-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
 	       url('font/LeagueMono-Light.svg#svgFontName') format('svg'); /* Legacy iOS */
-	}
-
-	@font-face {
-	  font-family: 'Andale Mono';
-	  src: url('font/LeagueMono-Bold.eot'); /* IE9 Compat Modes */
-	  src: url('font/LeagueMono-Bold?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-	       url('font/LeagueMono-Bold.woff2') format('woff2'), /* Super Modern Browsers */
-	       url('font/LeagueMono-Bold.woff') format('woff'), /* Pretty Modern Browsers */
-	       url('font/LeagueMono-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
-	       url('font/LeagueMono-Bold.svg#svgFontName') format('svg'); /* Legacy iOS */
 	}
 
         body {
@@ -131,7 +121,7 @@
         }
 
         .label {
-          font-family: Andale Mono;
+          font-family: League Mono;
           font-style: normal;
           font-weight: 300;
           font-size: 11px;
@@ -235,7 +225,7 @@
         .attr("x", 0)             
         .attr("y", -diameter/3.2)
         .attr("text-anchor", "middle")
-        .style("font-family", "Andale Mono");
+        .style("font-family", "League Mono");
 
 
       gtext.selectAll("text").data([2], function(d) {return d}).enter().append("text")
@@ -243,7 +233,7 @@
         .attr("x", 0)             
         .attr("y", -diameter/4.1)
         .attr("text-anchor", "middle")  
-        .style("font-family", "Andale Mono")
+        .style("font-family", "League Mono")
         .style("font-style", "italic")
         .text("learning D3.js");
 
@@ -252,7 +242,7 @@
         .attr("x", 0)             
         .attr("y", +diameter/4)
         .attr("text-anchor", "middle")  
-        .style("font-family", "Andale Mono")
+        .style("font-family", "League Mono")
         .style("font-style", "italic")
         .text("bernat.bramon@gmail.com");
 
