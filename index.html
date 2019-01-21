@@ -281,7 +281,7 @@
                           d3.event.stopPropagation()};
             })
         .style("display", function(d) { return (d.depth<=focus.depth+1) ? "inline" : "none"; })
-        .style("stroke", function(d) { if(d.data.name!="CROSTA"){"#525252"}})
+        .style("stroke", function(d) { return d.data.stroke;})
         .on("mouseover", function(d) { if (focus==root || focus.depth==1){ d3.select("#foto-0").attr("xlink:href", "images/surfer_blur2.png");} })
         .on("mouseout", function(d) { if (focus==root || focus.depth==1){ d3.select("#foto-0").attr("xlink:href", "images/surfer.png"); }});
 
@@ -358,7 +358,7 @@
             });
 
             trans.selectAll("g.node")
-            .filter(function(d) { return (d.depth<=focus.depth+1)  || this.style.display === "inline"; })
+            .filter(function(d) { return (d.parent===focus)  || this.style.display === "inline"; })
             .delay(slapse)
             .style("fill-opacity", function(d) { return (d.depth<=focus.depth+1) ? 1 : 0; })
             .on("start", function(d) { if (d.depth<=focus.depth+1)  this.style.display = "inline"; })
@@ -366,7 +366,7 @@
 
             if (focus===root){
                 trans.selectAll("circle")
-                .filter(function(d) { return (d.depth<=focus.depth+1)  || this.style.display === "inline"; })
+                .filter(function(d) { return (d.parent===focus)  || this.style.display === "inline"; })
                 .delay(function(d) {return (d.depth==1) ? 0:slapse; })
                 .style("fill-opacity", function(d) { return (d.depth<=focus.depth) ? 1 : 0; })
                 .on("start", function(d) { if (d.depth<=focus.depth+1)  this.style.display = "inline"; })
@@ -378,14 +378,14 @@
                                       }else{
                                           return (d.depth<=focus.depth+1)  || this.style.display === "inline"; 
                                       }})
-                .delay(slapse)
+                .delay(function(d){return (d.depth==1)? mlapse:slapse})
                 .ease(d3.easeLinear).style("opacity", function(d) { return (d.depth<=focus.depth) ? 1 : 0 })
                 .on("start", function(d) { if (d.depth<=focus.depth)  this.style.display = "inline"; })
                 .on("end", function(d) { if (d.depth>focus.depth)  this.style.display = "none"; });
             }else{
                 trans.selectAll("circle")
-                .filter(function(d) { return (d.depth<=focus.depth+1)  || this.style.display === "inline"; })
-                .delay(slapse)
+                .filter(function(d) { return (d.parent===focus)  || this.style.display === "inline"; })
+                .delay(function(d){return (d.depth==1)? llapse:slapse})
                 .style("fill-opacity", function(d) { return (d.depth<=focus.depth+1) ? 1 : 0; })
                 .on("start", function(d) { if (d.depth<=focus.depth+1)  this.style.display = "inline"; })
                 .on("end", function(d) { if (d.depth>focus.depth+1)  this.style.display = "none"; });
@@ -396,7 +396,7 @@
                                       }else{
                                           return (d.depth<=focus.depth+1)  || this.style.display === "inline"; 
                                       }})
-                .delay(slapse)
+                .delay(function(d){return (d.depth<=1)? 0:slapse})
                 .ease(d3.easeLinear).style("opacity", function(d) { return (d.depth<=focus.depth+1) ? 1 : 0 })
                 .on("start", function(d) { if (d.depth<=focus.depth+1)  this.style.display = "inline"; })
                 .on("end", function(d) { if (d.depth>focus.depth+1)  this.style.display = "none"; });

@@ -4,6 +4,7 @@
  "switch":"on",
  "img":"images/surfer2.png",
  "color":"#f0f0f0",
+ "stroke":"#525252",
  "position":-40,
  "x":470,
  "y":470,
@@ -21,6 +22,7 @@
     {
      "name": "About",
      "color":"#f5f5f5",
+     "stroke":"#525252",
      "padding":2,
      "switch":"on",
      "img":"images/about.svg",
@@ -35,6 +37,7 @@
     {
      "name": "Publications",
      "color":"#f5f5f5",
+     "stroke":"#525252",
      "padding":2,
      "switch":"on",
      "img":"images/publications.svg",
@@ -49,6 +52,7 @@
     {
      "name": "Projects",
      "color":"#f5f5f5",
+     "stroke":"#525252",
      "padding":10,
      "switch":"on",
      "img":"images/projects.svg",
@@ -57,17 +61,17 @@
      "y":713.742277328938,
      "apagar":"si",
      "children": [
-      {"name": "Random models", "color":"#d0d1e6", "padding":2,"switch":"on", "img":"images/rmodels.svg", 
+      {"name": "Random models", "color":"#e5f5e0", "stroke":"#525252", "padding":2,"switch":"on", "img":"images/rmodels.svg", 
            "x":392, "y":705, "position":-70,"children": [
-          {"name":"text", "color":"#d0d1e6", "padding":2, "switch":"off" , "size": 10,
+          {"name":"text", "color":"#e5f5e0", "stroke":"#525252", "padding":2, "switch":"off" , "size": 10,
                 "x":392, "y":705, "position":-40}]},
-      {"name": "Alignments","color":"#d0d1e6",  "padding":2,"switch":"on", "img":"images/alignments.svg", "size": 10,
+      {"name": "Alignments","color":"#e5f5e0", "stroke":"#525252", "padding":2,"switch":"on", "img":"images/alignments.svg", "size": 10,
            "x":548, "y":705, "position":-70,"children": [
-          {"name":"text", "color":"white", "padding":2, "switch":"off" , "size": 10,
+          {"name":"text", "color":"#e5f5e0", "stroke":"#525252", "padding":2, "switch":"off" , "size": 10,
                 "x":548, "y":705, "position":-40}]},
-      {"name": "Evolution","color":"#d0d1e6",  "padding":2,"switch":"on", "img":"images/evolution.svg", "size": 10,
+      {"name": "Evolution","color":"#e5f5e0", "stroke":"#525252", "padding":2,"switch":"on", "img":"images/evolution.svg", "size": 10,
            "x":470, "y":820, "position":-70,"children": [
-          {"name":"text", "color":"white", "padding":2, "switch":"off" , "size": 10,
+          {"name":"text", "color":"#e5f5e0", "stroke":"#525252", "padding":2, "switch":"off" , "size": 10,
                 "x":470, "y":820, "position":-40}]},
       {"name": "CROSTA","color":"#f5f5f5",  "padding":2,"switch":"off", "size": 10,
            "x":470, "y":599.3466283222208 , "position":-40}]
@@ -75,6 +79,7 @@
     {
      "name": "Resume",
      "color":"#f5f5f5",
+     "stroke":"#525252",
      "padding":2,
      "switch":"on",
      "img":"images/resume.svg",
@@ -89,6 +94,7 @@
     {
      "name": "Conferences",
      "color":"#f5f5f5",
+     "stroke":"#525252",
      "padding":2,
      "switch":"on",
      "img":"images/conferences.svg",
