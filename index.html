@@ -99,7 +99,7 @@
 
       var div = d3.select("div#container").append("div").attr("id","content")
         .insert("iframe").attr("id", "htmlfile").attr("pointer-events", "auto")
-        .style("z-index", -1000);
+        .style("z-index", -1000).style("display", "none").attr("src","landing.html");
 
       var nodeEnter = g.selectAll("g.node")
         .data(nodes_obj)
