@@ -162,16 +162,11 @@ iframe {
 
 #content {
    position: absolute;
-   float:center;
-   padding-top:27%;
-   padding-right:10%;
-   padding-bottom:18%;
-   padding-left:10%;
-   left: 0px;
-   top: 0px;
-   /* absolute position implies no width and height */
-   width: 80%;
-   height: 55%;
+   width: 72%;
+   height: 54%;
+   padding-top:28%;
+   padding-left:14%;
+   display: block;
    pointer-events: none;
 }
 
