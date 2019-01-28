@@ -74,7 +74,7 @@ function formatJournal(paper){
 function createPaper(paper){
   // Create parent column
   var thisPaper = document.createElement("div")
-  thisPaper.classList.add("col-md-6")
+  thisPaper.classList.add("col-sm-12")
   thisPaper.classList.add("my-4")
   thisPaper.classList.add("px-4")
   // Create internal row
@@ -85,7 +85,7 @@ function createPaper(paper){
   thumbnailCol.classList.add("col-sm-5")
   thumbnailCol.classList.add("d-none")
   thumbnailCol.classList.add("d-sm-block")
-  thumbnailCol.classList.add("d-md-none")
+  thumbnailCol.classList.add("d-md-block")
   thumbnailCol.classList.add("d-lg-block")
   // Create thumbnail
   var pdfLink = document.createElement("a")
@@ -98,14 +98,13 @@ function createPaper(paper){
   thumbnail.classList.add("img-thumbnail")
   // Create description column
   var descColumn = document.createElement("div")
-  
   descColumn.classList.add("col-sm-7")
-  descColumn.classList.add("col-md-12")
-  descColumn.classList.add("col-lg-6")
-  descColumn.classList.add("description-column")
+  descColumn.classList.add("col-md-7")
+  descColumn.classList.add("col-lg-7")
+  descColumn.classList.add("petit")
   // Create title
   var paperTitle = document.createElement("h3")
-  paperTitle.classList.add("paper-title")
+  paperTitle.classList.add("gran")
   if(paper.oa){
     var thisTitle = paper.title + " <i class='ai ai-open-access'></i>"
   } else {
@@ -115,11 +114,14 @@ function createPaper(paper){
   // Create author list
   var authorsP = document.createElement("p")
   authorsP.innerHTML = formatAuthors(paper.authors)
+  authorsP.classList.add("petit")
   // Create journal details
   var journalP = document.createElement("p")
   journalP.innerHTML = formatJournal(paper)
+  journalP.classList.add("petit")
   // doi
   var doiP = document.createElement("p")
+  doiP.classList.add("petit")
   doiP.classList.add("small")
   var doiLink = document.createElement("a")
   doiLink.setAttribute("href", paper.doi)
