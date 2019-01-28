@@ -11,6 +11,12 @@
     <!--<meta http-equiv="refresh" content="100">-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
     <link rel="stylesheet" href="othercss/main.css">
 
 </head>
@@ -20,11 +26,26 @@
 <div id="container" class="svg-container">
     <!--<svg xmlns="http://www.w3.org/2000/svg"></svg>
     <div id="content"></div>-->
+
 </div>
 
 <!--<script type="text/javascript" src="d3/d3.js"></script>-->
+<script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
+
 <script>
+	function loadHtml(clickedBar)
+	{
+
+	     $.ajax({
+		type:"GET",
+		url: clickedBar,
+		mimeType: "text/html; charset=utf-8",
+		success: function(result){
+		    $("#htmlcontent").html(result);
+                    }
+		});
+	}
 
 
     var svg = d3.select("div#container")
@@ -97,9 +118,9 @@
 
     //Pattern definitions-------------------------------------------------------
 
-      var div = d3.select("div#container").append("div").attr("id","content")
-        .insert("iframe").attr("id", "htmlfile").attr("pointer-events", "auto")
-        .style("z-index", -1000).style("display", "none").attr("src","landing.html");
+      
+      var div = d3.select("div#container").append("div").attr("id","content").style("z-index", -2000)//.style("height", svg.style("height"))
+                  .insert("div").attr("id", "htmlcontent");
 
       var nodeEnter = g.selectAll("g.node")
         .data(nodes_obj)
@@ -155,7 +176,7 @@
       var node = g.selectAll("g.node,text.label");
 
 
-      svg.style("background", "white")
+      svg.style("background", "none")
           .on("click", function() {
                     zoom(root);
                     });
@@ -273,19 +294,24 @@
             var maincircle = d3.selectAll("#foto-0");
 
             if(focus.children.length==1 && focus!==root && focus.data.name!="Projects"){
-               d3.select("#htmlfile").attr("src",d.data.name+".html").style("z-index", 2000).transition().delay(mlapse+slapse).style("display", "block");
+               d3.select("#content").style("z-index", 1000);
+               d3.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")})
+                 .transition().delay(mlapse+slapse).style("display", "inline-block");
             }else{
-               d3.select("#htmlfile").style("display", "none").style("z-index", -1000);
+               d3.select("#htmlcontent").style("display", "none");
+               d3.select("#content").style("z-index", -1000);
             }
 
             if(focus.depth==0){
                d3.select("#firstpage1").transition().delay(mlapse).style("opacity", 1);
                d3.selectAll("#firstpage2").transition().delay(mlapse).style("opacity", 1);
                maincircle.attr("xlink:href", "images/surfer2.png");
+               d3.selectAll("#icons3").transition().delay(mlapse).style("opacity", 1);
             }else{
                d3.select("#firstpage1").transition().delay(0).duration(mlapse).style("opacity", 0);
                d3.selectAll("#firstpage2").transition().delay(0).duration(mlapse).style("opacity", 0);
                maincircle.attr("xlink:href", "images/surfer_blur2.png");
+               d3.selectAll("#icons3").transition().delay(0).duration(mlapse).style("opacity", 0);
             }
 
             /*if(focus.depth==0){
