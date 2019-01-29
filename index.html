@@ -16,8 +16,12 @@
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+"
         crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
-    <link rel="stylesheet" href="othercss/main.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+
+    <link rel='stylesheet' media='screen and (orientation:portrait)' href='css/portrait.css' />
+    <link rel='stylesheet' media='screen and (orientation:landscape)' href='css/landscape.css' />
+
+
 
 </head>
 
@@ -83,7 +87,7 @@
       gtext.selectAll("text").data([3], function(d) {return d}).enter().append("text")
         .attr("id", "firstpage2")
         .attr("x", 0)             
-        .attr("y", +diameter/4)
+        .attr("y", +diameter/3.5)
         .attr("text-anchor", "middle")  
         .style("font-family", "League Mono")
         .style("font-style", "italic")
