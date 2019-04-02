@@ -82,7 +82,7 @@
         .attr("text-anchor", "middle")  
         .style("font-family", "League Mono")
         .style("font-style", "italic")
-        .text("learning D3.js");
+        .text("PhD student");
 
       gtext.selectAll("text").data([3], function(d) {return d}).enter().append("text")
         .attr("id", "firstpage2")
@@ -190,8 +190,6 @@
       function zoom(d) {
             var focus0 = focus; focus = d;
             var slapse=500, mlapse=1500, llapse=2000;
-
-            console.log(focus.depth);
 
             var trans = d3.transition()
             .duration(d3.event.altKey ? 7500 : mlapse)
