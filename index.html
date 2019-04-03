@@ -303,6 +303,7 @@
                d3.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")})
                  .transition().delay(mlapse+slapse).style("display", "inline-block");
             }else{
+               document.getElementById('htmlcontent').scrollTop=0;
                d3.select("#htmlcontent").style("display", "none");
                d3.select("#content").style("z-index", -1000);
             }
