@@ -118,13 +118,13 @@ body {
 
 }
 
-@media all and (min-height: 600px) {
+@media all and (max-height: 700px) and (min-height: 600px) {
     #firstpage1 {
-        font-size: 42px;
+        font-size: 40px;
     }
 
     #firstpage2 {
-        font-size: 26px;
+        font-size: 24px;
     }
 
    .gran {
@@ -148,6 +148,38 @@ body {
        font-size: 2em;
    }
 }
+
+@media all and (min-height: 700px) {
+    #firstpage1 {
+        font-size: 38px;
+    }
+
+    #firstpage2 {
+        font-size: 22px;
+    }
+
+   .gran {
+       font-size: 22px;
+      }
+   .petit {
+       font-size: 17px;
+      }
+
+   #icons3 {
+      padding-top:2em;
+   }
+
+   #icons2 {
+      padding-left:1.1em;
+      padding-right:1.1em;
+   }
+
+   #icons1 {
+       color:#2e3436;
+       font-size: 2.1em;
+   }
+}
+
 
 
 .node {

@@ -118,13 +118,15 @@ body {
 
 }
 
-@media all and (min-width: 600px) {
+
+
+@media all and (max-width: 700px) and (min-width: 600px) {
     #firstpage1 {
-        font-size: 42px;
+        font-size: 40px;
     }
 
     #firstpage2 {
-        font-size: 26px;
+        font-size: 24px;
     }
 
    .gran {
@@ -149,6 +151,36 @@ body {
    }
 }
 
+@media all and (min-width: 700px) {
+    #firstpage1 {
+        font-size: 38px;
+    }
+
+    #firstpage2 {
+        font-size: 22px;
+    }
+
+   .gran {
+       font-size: 22px;
+      }
+   .petit {
+       font-size: 17px;
+      }
+
+   #icons3 {
+      padding-top:2em;
+   }
+
+   #icons2 {
+      padding-left:1.1em;
+      padding-right:1.1em;
+   }
+
+   #icons1 {
+       color:#2e3436;
+       font-size: 2.1em;
+   }
+}
 
 .node {
   cursor: pointer;
