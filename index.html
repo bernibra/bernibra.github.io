@@ -37,10 +37,10 @@
 <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
-<script>
-	function loadHtml(clickedBar)
-	{
 
+<script>
+
+    function loadHtml(clickedBar){
 	     $.ajax({
 		type:"GET",
 		url: clickedBar,
@@ -49,7 +49,7 @@
 		    $("#htmlcontent").html(result);
                     }
 		});
-	}
+    }
 
 
     var svg = d3.select("div#container")
@@ -64,7 +64,10 @@
         fzinitial = "30px";
     }
 
+
     var gtext = svg.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+
+
 
       gtext.selectAll("text").data([1], function(d) {return d}).enter().append("text")
         .attr("id", "firstpage1")
@@ -82,7 +85,7 @@
         .attr("text-anchor", "middle")  
         .style("font-family", "League Mono")
         .style("font-style", "italic")
-        .text("PhD student");
+        .text("data scientist");
 
       gtext.selectAll("text").data([3], function(d) {return d}).enter().append("text")
         .attr("id", "firstpage2")
@@ -300,21 +303,21 @@
 
             if(focus.children.length==1 && focus!==root && focus.data.name!="Projects"){
                d3.select("#content").style("z-index", 1000);
-               d3.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")})
-                 .transition().delay(mlapse+slapse).style("display", "inline-block");
+               trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")})
+                 .transition().style("display", "inline-block");
             }else{
                document.getElementById('htmlcontent').scrollTop=0;
-               d3.select("#htmlcontent").style("display", "none");
+               trans.select("#htmlcontent").style("display", "none");
                d3.select("#content").style("z-index", -1000);
             }
 
             if(focus.depth==0){
-               d3.select("#firstpage1").transition().delay(mlapse).style("opacity", 1);
+               d3.selectAll("#firstpage1").transition().delay(mlapse).style("opacity", 1);
                d3.selectAll("#firstpage2").transition().delay(mlapse).style("opacity", 1);
                maincircle.attr("xlink:href", "images/surfer2.png");
                d3.selectAll("#icons3").transition().delay(mlapse).style("opacity", 1);
             }else{
-               d3.select("#firstpage1").transition().delay(0).duration(mlapse).style("opacity", 0);
+               d3.selectAll("#firstpage1").transition().delay(0).duration(mlapse).style("opacity", 0);
                d3.selectAll("#firstpage2").transition().delay(0).duration(mlapse).style("opacity", 0);
                maincircle.attr("xlink:href", "images/surfer_blur2.png");
                d3.selectAll("#icons3").transition().delay(0).duration(mlapse).style("opacity", 0);
