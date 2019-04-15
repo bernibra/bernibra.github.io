@@ -230,8 +230,12 @@
             })
         .style("display", function(d) { return (d.depth<=focus.depth+1) ? "inline" : "none"; })
         .style("stroke", function(d) { return d.data.stroke;})
-        .on("mouseover", function(d) { if (focus==root || focus.depth==1){ d3.select("#foto-0").attr("xlink:href", "images/surfer_blur2.png");} })
-        .on("mouseout", function(d) { if (focus==root || focus.depth==1){ d3.select("#foto-0").attr("xlink:href", "images/surfer2.png"); }});
+        .on("mouseover", function(d) { if (focus==root || focus.depth==1){ d3.select("#foto-0").attr("xlink:href", "images/surfer_blur2.png");}
+                                      d3.select(this).style("stroke","black");
+                                     })
+        .on("mouseout", function(d) { if (focus==root || focus.depth==1){ d3.select("#foto-0").attr("xlink:href", "images/surfer2.png"); }
+                                      d3.select(this).style("stroke", function(d) { return d.data.stroke;});
+                                     });
 
       var circle = nodeEnter.append("svg:circle")
         .attr("r", function(d) {d.size})
@@ -433,9 +437,9 @@
         //node.attr("transform", function(d) { return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")"; });
         node.attr("transform", function(d) { return "translate(" + (d.data.x - v[0]) * k + "," + (d.data.y - v[1]) * k + ")"; });
         circle.attr("r", function(d) { return d.r * k; });
-        images.attr("width", function(d) { return d.r * 1.98 * k; });
-        images.attr("height", function(d) { return d.r *  1.98 * k; });
-        images.attr("transform", function(d) { return "translate(" + -0.5 * (d.r * 1.98 * k) + "," + -0.5 * (d.r * 1.98 * k) + ")"; });
+        images.attr("width", function(d) { return d.r * 1.99 * k; });
+        images.attr("height", function(d) { return d.r *  1.99 * k; });
+        images.attr("transform", function(d) { return "translate(" + -0.5 * (d.r * 1.99 * k) + "," + -0.5 * (d.r * 1.99 * k) + ")"; });
 
       }
     });

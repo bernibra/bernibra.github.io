@@ -184,12 +184,12 @@ body {
 
 .node {
   cursor: pointer;
-  stroke-width: 0.5px;
+  stroke-width: 0.8px;
 }
 
 .node:hover {
   stroke: black;
-  stroke-width: 2px;
+  stroke-width: 2.5px;
 /*idea: earth type shadding*/
 }
 
@@ -316,6 +316,10 @@ summary {
 
 .more-details-lead {
     font-weight: normal;
+}
+
+.img-thumbnail {
+  border: 1px #969696 solid;
 }
 
 summary::-webkit-details-marker {
