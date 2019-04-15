@@ -235,6 +235,7 @@ body {
 }
 
 /* Center the loader */
+/*
 #loader {
     background-color:#2e3436;
     display: inline;
@@ -247,7 +248,7 @@ body {
     left:50vw;
     z-index:2;
     transform: translate(-50%, 0%);
-}
+}*/
 
 #content {
    position: absolute;

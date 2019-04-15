@@ -26,6 +26,9 @@
 </head>
 
 <body>
+<!--<body onload="myFunction()">
+
+<div id="loader"></div>-->
 
 <div id="container" class="svg-container">
     <!--<svg xmlns="http://www.w3.org/2000/svg"></svg>
@@ -68,6 +71,91 @@
     var gtext = svg.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
 
+//////////////////////////////////LOADER///////////////////////////////////
+/*    var svg2 = d3.select("div#loader")
+            .append("svg").attr("preserveAspectRatio", "xMinYMin meet").attr("viewBox", "0 0 960 960").classed("svg-content", true);
+    var gtext2 = svg2.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+
+      gtext2.selectAll("text").data([1], function(d) {return d}).enter().append("text")
+        .attr("id", "firstpage1")
+        .text("Bernat Bramon Mora")
+        .attr("x", 0)             
+        .attr("y", -diameter/3.2)
+        .attr("text-anchor", "middle")
+        .style("font-family", "League Mono");
+
+
+      gtext2.selectAll("text").data([2], function(d) {return d}).enter().append("text")
+        .attr("id", "firstpage2")
+        .attr("x", 0)             
+        .attr("y", -diameter/4.1)
+        .attr("text-anchor", "middle")  
+        .style("font-family", "League Mono")
+        .style("font-style", "italic")
+        .text("PhD student");
+
+      gtext2.selectAll("text").data([3], function(d) {return d}).enter().append("text")
+        .attr("id", "firstpage2")
+        .attr("x", 0)             
+        .attr("y", +diameter/3.5)
+        .attr("text-anchor", "middle")  
+        .style("font-family", "League Mono")
+        .style("font-style", "italic")
+        .text("bernat.bramon@gmail.com");
+
+      function degToRad (degrees) {
+        return degrees * Math.PI / 180;
+      }
+
+      function arcTween(newAngle, angle) {
+        return function(d) {
+          var interpolate = d3.interpolate(d[angle], newAngle);
+        return function(t) {
+          d[angle] = interpolate(t);
+          return arc(d);
+          };
+          };
+       }
+
+       const animationTime = 1000;
+       const loaderRadius = diameter / 7;
+       const loaderColor = '#ccc';
+
+       var arc = d3.arc()
+           .innerRadius(diameter / 10)
+           .outerRadius(loaderRadius);
+
+       var loader = gtext2.append("path")
+         .datum({endAngle: 0, startAngle: 0})
+         .style("fill", loaderColor)
+         .attr("d", arc);
+
+       d3.interval(function() {
+         loader.datum({endAngle: 0, startAngle: 0})
+  
+         loader.transition()
+             .duration(animationTime)
+             .attrTween("d", arcTween(degToRad(360), 'endAngle'));
+  
+          loader.transition()
+             .delay(animationTime)
+             .duration(animationTime)
+             .attrTween("d", arcTween(degToRad(360), 'startAngle'));
+    }, animationTime * 2);
+
+
+    var myVar;
+
+    function myFunction() {
+         myVar = setTimeout(showPage, 4000);
+    }
+
+    function showPage() {
+         d3.select("#loader").transition().delay(2000).duration(2000).style("opacity", 0);
+         d3.select("#loader").transition().delay(4000).style("display", "none");
+    }*/
+
+////////////////////////////////////////////////
 
       gtext.selectAll("text").data([1], function(d) {return d}).enter().append("text")
         .attr("id", "firstpage1")
@@ -143,7 +231,7 @@
         .style("display", function(d) { return (d.depth<=focus.depth+1) ? "inline" : "none"; })
         .style("stroke", function(d) { return d.data.stroke;})
         .on("mouseover", function(d) { if (focus==root || focus.depth==1){ d3.select("#foto-0").attr("xlink:href", "images/surfer_blur2.png");} })
-        .on("mouseout", function(d) { if (focus==root || focus.depth==1){ d3.select("#foto-0").attr("xlink:href", "images/surfer.png"); }});
+        .on("mouseout", function(d) { if (focus==root || focus.depth==1){ d3.select("#foto-0").attr("xlink:href", "images/surfer2.png"); }});
 
       var circle = nodeEnter.append("svg:circle")
         .attr("r", function(d) {d.size})
