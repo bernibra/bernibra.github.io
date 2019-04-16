@@ -58,6 +58,12 @@ body {
     color:#2e3436;
     font-size: 1.3em;
 }
+.center-im {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 @media all and (max-height: 500px) and (min-height: 400px) {
     #firstpage1 {
@@ -85,6 +91,12 @@ body {
        color:#2e3436;
        font-size: 1.5em;
    }
+   .center-im {
+       display: none;
+       margin-left: auto;
+       margin-right: auto;
+   }
+
 
 }
 
@@ -115,6 +127,12 @@ body {
        color:#2e3436;
        font-size: 1.7em;
    }
+   .center-im {
+       display: none;
+       margin-left: auto;
+       margin-right: auto;
+   }
+
 
 }
 
@@ -147,6 +165,12 @@ body {
        color:#2e3436;
        font-size: 2em;
    }
+   .center-im {
+       display: block;
+       margin-left: auto;
+       margin-right: auto;
+   }
+
 }
 
 @media all and (min-height: 700px) {
@@ -178,6 +202,12 @@ body {
        color:#2e3436;
        font-size: 2.1em;
    }
+   .center-im {
+       display: block;
+       margin-left: auto;
+       margin-right: auto;
+   }
+
 }
 
 .node {
@@ -328,6 +358,5 @@ summary::-webkit-details-marker {
 summary:hover {
     text-decoration: underline;
 }
-
 
 
