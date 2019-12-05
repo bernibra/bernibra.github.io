@@ -233,8 +233,7 @@
         .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
         //.style("fill", function(d) { return d.depth==1? "url(#grump_avatar)":color(d.depth); })
         .on("click", function(d) {
-            console.log(d.data.name)
-            console.log(d.data.depth)
+
             if (focus !== d){
                           zoom(d);
                           d3.event.stopPropagation()};
