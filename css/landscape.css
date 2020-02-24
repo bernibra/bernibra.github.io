@@ -173,7 +173,7 @@ body {
 
 }
 
-@media all and (min-height: 700px) {
+@media all and (max-height: 800px) and (min-height: 700px) {
     #firstpage1 {
         font-size: 38px;
     }
@@ -183,10 +183,48 @@ body {
     }
 
    .gran {
-       font-size: 22px;
+       font-size: 21px;
       }
    .petit {
-       font-size: 17px;
+       font-size: 15px;
+      }
+
+   #icons3 {
+      padding-top:2em;
+   }
+
+   #icons2 {
+      padding-left:1.1em;
+      padding-right:1.1em;
+   }
+
+   #icons1 {
+       color:#2e3436;
+       font-size: 2.1em;
+   }
+   .center-im {
+       display: block;
+       margin-left: auto;
+       margin-right: auto;
+   }
+
+}
+
+
+@media all and (min-height: 800px) {
+    #firstpage1 {
+        font-size: 38px;
+    }
+
+    #firstpage2 {
+        font-size: 22px;
+    }
+
+   .gran {
+       font-size: 21px;
+      }
+   .petit {
+       font-size: 18px;
       }
 
    #icons3 {
@@ -305,6 +343,35 @@ body {
    justify-content: center;
    align-items: center;
 }
+
+/*
+ #content::before{
+  content: '╲╱';
+  color: #000;
+  position: absolute;
+  opacity: 0.8;
+  text-shadow: 0 0 .5rem rgba(0,0,0,0.5);
+  width: 6rem;
+  font-size: 1.5rem;
+  height: 4rem;
+  line-height: 4rem;
+  text-align: center;
+  bottom: 2rem;
+  margin-left: -3rem;
+  left: 50%;
+  animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+  5% {
+    transform: translateY(-5%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+*/
+
 
 /* Papers *
 /* main .major-section:nth-child(even) {
