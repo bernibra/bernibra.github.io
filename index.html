@@ -42,13 +42,13 @@
 <div id="container" class="svg-container">
     <!--<svg xmlns="http://www.w3.org/2000/svg"></svg>
     <div id="content"></div>-->
-
 </div>
 
 <!--<script type="text/javascript" src="d3/d3.js"></script>-->
-<script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://d3js.org/d3.v4.min.js"></script>
 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
 
 <script>
 
@@ -166,6 +166,7 @@
 
 ////////////////////////////////////////////////
 
+
       gtext.selectAll("text").data([1], function(d) {return d}).enter().append("text")
         .attr("id", "firstpage1")
         .text("Bernat Bramon Mora")
@@ -224,8 +225,12 @@
 
       
       var div = d3.select("div#container").append("div").attr("id","content").style("z-index", -2000)//.style("height", svg.style("height"))
-                  .insert("div").attr("id", "htmlcontent");
-
+          .insert("div").attr("id", "htmlcontent");
+          
+          d3.select("#content").append("div").classed("arrow", true)
+          .insert("a")
+          .insert("span");
+      
       var nodeEnter = g.selectAll("g.node")
         .data(nodes_obj)
         .enter().append("svg:g")
@@ -406,10 +411,24 @@
             if(focus.children.length==1 && focus!==root && focus.data.name!="Projects"){
                d3.select("#content").style("z-index", 1000);
                trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")})
-                 .transition().style("display", "inline-block");
+                 .transition().style("display", "inline-block")
+                 .on("end", function(){
+                     if (this.scrollTop + this.clientHeight >= this.scrollHeight){
+                         d3.select(".arrow").style("display", "none");
+                     }else{
+                         d3.select(".arrow").style("display", "block");
+                     }
+                 });
             }else{
                document.getElementById('htmlcontent').scrollTop=0;
-               trans.select("#htmlcontent").style("display", "none");
+               trans.select("#htmlcontent").style("display", "none")
+               .on("end", function(){
+                   if (this.scrollTop + this.clientHeight >= this.scrollHeight){
+                       d3.select(".arrow").style("display", "none");
+                   }else{
+                       d3.select(".arrow").style("display", "block");
+                   }
+               });
                d3.select("#content").style("z-index", -1000);
             }
 
@@ -438,10 +457,20 @@
                 d3.select("body").transition().delay(500).duration(1000).style("background-color", "white");
             }
             
-            
       }
 
-
+      
+      d3.select("#htmlcontent")
+      .on("scroll.scroller", function() {
+          if (this.scrollTop + this.clientHeight >= this.scrollHeight){
+                  d3.select(".arrow").style("display", "none");
+              }else{
+                  d3.select(".arrow").style("display", "block");
+              }
+          });
+      
+      
+      
       function zoomTo(v) {
         var k = diameter / v[2]; view = v;
         //node.attr("transform", function(d) { return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")"; });
