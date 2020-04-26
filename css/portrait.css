@@ -301,9 +301,6 @@ body {
    pointer-events: all;
    justify-content: center;
    align-items: center;
-   background: -webkit-linear-gradient(#eee, #333);
-   -webkit-background-clip: text;
-   -webkit-text-fill-color: transparent;
 }
 
 /* Papers *
