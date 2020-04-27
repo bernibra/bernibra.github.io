@@ -421,14 +421,8 @@
                  });
             }else{
                document.getElementById('htmlcontent').scrollTop=0;
-               trans.select("#htmlcontent").style("display", "none")
-               .on("end", function(){
-                   if (this.scrollTop + this.clientHeight >= this.scrollHeight){
-                       d3.select(".arrow").style("display", "none");
-                   }else{
-                       d3.select(".arrow").style("display", "block");
-                   }
-               });
+               trans.select("#htmlcontent").style("display", "none");
+               trans.select(".arrow").style("display", "none");
                d3.select("#content").style("z-index", -1000);
             }
 
