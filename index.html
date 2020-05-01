@@ -220,16 +220,19 @@
           nodes_obj = pack(root).descendants(),
           view;
 
+          var isTransition = false;
+
 
     //Pattern definitions-------------------------------------------------------
 
       
       var div = d3.select("div#container").append("div").attr("id","content").style("z-index", -2000)//.style("height", svg.style("height"))
-          .insert("div").attr("id", "htmlcontent");
-          
-          d3.select("#content").append("div").classed("arrow", true)
+      .insert("div").attr("id", "htmlcontent");
+      d3.select("#content").append("div").classed("arrow", true)
           .insert("a")
           .insert("span");
+          d3.select("#content").append("div").attr("id", "blurrystuff");
+
       
       var nodeEnter = g.selectAll("g.node")
         .data(nodes_obj)
@@ -240,8 +243,12 @@
         .on("click", function(d) {
 
             if (focus !== d){
+                if(!isTransition){
+                          isTransition = true;
                           zoom(d);
-                          d3.event.stopPropagation()};
+                          d3.event.stopPropagation()
+                }
+                };
             })
         .style("display", function(d) { return (d.depth<=focus.depth+1) ? "inline" : "none"; })
         .style("stroke", function(d) { return d.data.stroke;})
@@ -292,16 +299,20 @@
 
       svg.style("background", "none")
           .on("click", function() {
+              if(!isTransition){
+                  isTransition = true;
                     zoom(root);
-                    });
+              }
+            });
 
       zoomTo([root.x, root.y, root.r * smallr *2 + margin]);
 
       function zoom(d) {
             var focus0 = focus; focus = d;
             var slapse=500, mlapse=1500, llapse=2000;
+            var transitionname = "trans".concat("_", focus.depth)
 
-            var trans = d3.transition()
+            var trans = d3.transition(transitionname)
             .duration(d3.event.altKey ? 7500 : mlapse)
             .delay(function(d){
               if(focus==root){
@@ -372,7 +383,7 @@
             }
 
             if(focus.data.name=="Projects"){
-            d3.select("#foto-4").transition().delay(slapse).duration(2*slapse).ease(d3.easeLinear)
+            d3.select("#foto-4").transition(transitionname).delay(slapse).duration(2*slapse).ease(d3.easeLinear)
               .style("opacity", 0);
             }
 
@@ -409,33 +420,38 @@
             var maincircle = d3.selectAll("#foto-0");
 
             if(focus.children.length==1 && focus!==root && focus.data.name!="Projects"){
-               d3.select("#content").style("z-index", 1000);
-               trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")})
-                 .transition().style("display", "inline-block")
-                 .on("end", function(){
+               trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")}).style("display", "inline-block")
+               .on("end", function(){
                      if (this.scrollTop + this.clientHeight >= this.scrollHeight){
                          d3.select(".arrow").style("display", "none");
+                         d3.select("#blurrystuff").style("display", "none");
+                         d3.select("#content").style("z-index", 1000);
                      }else{
-                         d3.select(".arrow").style("display", "block");
+                         
+                         d3.select(".arrow").transition(transitionname).style("display", "block");
+                         d3.select("#blurrystuff").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 80%)")).transition(transitionname).style("display", "inline-block");
+                         d3.select("#content").style("z-index", 1000);
+
                      }
                  });
             }else{
                document.getElementById('htmlcontent').scrollTop=0;
                trans.select("#htmlcontent").style("display", "none");
                trans.select(".arrow").style("display", "none");
+               trans.select("#blurrystuff").style("display", "none")
                d3.select("#content").style("z-index", -1000);
             }
 
             if(focus.depth==0){
-               d3.selectAll("#firstpage1").transition().delay(mlapse).style("opacity", 1);
-               d3.selectAll("#firstpage2").transition().delay(mlapse).style("opacity", 1);
+               d3.selectAll("#firstpage1").transition(transitionname).delay(mlapse).style("opacity", 1);
+               d3.selectAll("#firstpage2").transition(transitionname).delay(mlapse).style("opacity", 1);
                maincircle.attr("xlink:href", "images/surfer2.png");
-               d3.selectAll("#icons3").transition().delay(mlapse).style("opacity", 1);
+               d3.selectAll("#icons3").transition(transitionname).delay(mlapse).style("opacity", 1);
             }else{
-               d3.selectAll("#firstpage1").transition().delay(0).duration(mlapse).style("opacity", 0);
-               d3.selectAll("#firstpage2").transition().delay(0).duration(mlapse).style("opacity", 0);
+               d3.selectAll("#firstpage1").transition(transitionname).delay(0).duration(mlapse).style("opacity", 0);
+               d3.selectAll("#firstpage2").transition(transitionname).delay(0).duration(mlapse).style("opacity", 0);
                maincircle.attr("xlink:href", "images/surfer_blur2.png");
-               d3.selectAll("#icons3").transition().delay(0).duration(mlapse).style("opacity", 0);
+               d3.selectAll("#icons3").transition(transitionname).delay(0).duration(mlapse).style("opacity", 0);
             }
 
             /*if(focus.depth==0){
@@ -446,10 +462,14 @@
                 d3.select("body").transition().delay(1000).duration(1000).style("background-color", "#2e3436");
             }*/
             if(focus.depth>1){
-                d3.select("body").transition().delay(1000).duration(1000).style("background-color", "#2e3436");
+                d3.select("body").transition(transitionname).delay(1000).duration(1000).style("background-color", "#2e3436");
             }else{
-                d3.select("body").transition().delay(500).duration(1000).style("background-color", "white");
+                d3.select("body").transition(transitionname).delay(500).duration(1000).style("background-color", "white");
             }
+            
+            trans.on("end", function(){
+                isTransition = false;
+            })
             
       }
 
@@ -458,8 +478,11 @@
       .on("scroll.scroller", function() {
           if (this.scrollTop + this.clientHeight >= this.scrollHeight){
                   d3.select(".arrow").style("display", "none");
+                  d3.select("#blurrystuff").style("display", "none");
               }else{
                   d3.select(".arrow").style("display", "block");
+                         d3.select("#blurrystuff").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 80%)")).style("display", "inline-block");
+                         
               }
           });
       
