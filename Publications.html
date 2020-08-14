@@ -6,6 +6,17 @@
 <script>
 var papers = {"papers": [
   {
+    "title": "Untangling the seasonal dynamics of plant-pollinator communities",
+    "authors": ["Bernat Bramon Mora", "Eura Shin", "Paul J. CaraDonna", "Daniel B. Stouffer"],
+    "journal": "Nature Communications",
+    "date": "Aug 2020",
+    "vol": "11",
+    "pages": "4086",
+    "doi": "https://doi.org/10.1038/s41467-020-17894-y",
+    "localFileName": "NatComm2020",
+    "oa": true
+  },
+  {
     "title": "Unmasking structural patterns in incidence matrices: an application to ecological data",
     "authors": ["Bernat Bramon Mora", "Giulio V. Dalla Riva", "Daniel B. Stouffer"],
     "journal": "Journal of the Royal Society Interface",
@@ -13,7 +24,7 @@ var papers = {"papers": [
     "vol": "16",
     "pages": "20180747",
     "doi": "https://doi.org/10.1098/rsif.2018.0747",
-    "localFileName": "jrsi2019",
+    "localFileName": "JRI2019",
     "oa": true
   },
   {
@@ -24,7 +35,7 @@ var papers = {"papers": [
     "vol": "-",
     "pages": "-",
     "doi": "https://doi.org/10.1101/364703",
-    "localFileName": "364703",
+    "localFileName": "pymfinder2018",
     "oa": true
   },
   {
@@ -35,7 +46,7 @@ var papers = {"papers": [
     "vol": "0",
     "pages": "1--12",
     "doi": "https://doi.org/10.1111/1365-2435.13237",
-    "localFileName": "Hutchinson_et_al-2018-Functional_Ecology",
+    "localFileName": "FunEco2018",
     "oa": true
   },
   {
@@ -46,7 +57,7 @@ var papers = {"papers": [
     "vol": "9",
     "pages": "2603",
     "doi": "https://doi.org/10.1038/s41467-018-05056-0",
-    "localFileName": "s41467-018-05056-0",
+    "localFileName": "NatComm2018",
     "oa": true
   }
 ]}
@@ -150,7 +161,7 @@ function createPaper(paper){
 }
 
 // Fill in papers
-for (var i = 0; i < 4; i++) {
+for (var i = 0; i < 5; i++) {
     document.getElementById("latest-publications-row").appendChild(createPaper(papers.papers[i]))
 }
 </script>
