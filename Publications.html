@@ -6,6 +6,17 @@
 <script>
 var papers = {"papers": [
   {
+    "title": "Assessing unintended human‐mediated dispersal using visitation networks",
+    "authors": ["Rogini Runghen", "Bernat Bramon Mora", "Antonia Godoy-Lorite", "Daniel B. Stouffer"],
+    "journal": "Journal of Applied Ecology",
+    "date": "Feb 2021",
+    "vol": "0",
+    "pages": "1--12",
+    "doi": "https://doi.org/10.1111/1365-2664.13829",
+    "localFileName": "JAE2021",
+    "oa": true
+ },
+  {
     "title": "Untangling the seasonal dynamics of plant-pollinator communities",
     "authors": ["Bernat Bramon Mora", "Eura Shin", "Paul J. CaraDonna", "Daniel B. Stouffer"],
     "journal": "Nature Communications",
@@ -43,8 +54,8 @@ var papers = {"papers": [
     "authors": ["Matthew C. Hutchinson", "Bernat Bramon Mora", "Shai Pilosof", "Allison K. Barner", "Sonia Kéfi", "Elisa Thébault", "Pedro Jordano", "Daniel B. Stouffer"],
     "journal": "Functional Ecology",
     "date": "November 2018",
-    "vol": "0",
-    "pages": "1--12",
+    "vol": "33",
+    "pages": "206--217",
     "doi": "https://doi.org/10.1111/1365-2435.13237",
     "localFileName": "FunEco2018",
     "oa": true
@@ -161,7 +172,7 @@ function createPaper(paper){
 }
 
 // Fill in papers
-for (var i = 0; i < 5; i++) {
+for (var i = 0; i < 6; i++) {
     document.getElementById("latest-publications-row").appendChild(createPaper(papers.papers[i]))
 }
 </script>
