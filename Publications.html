@@ -6,6 +6,17 @@
 <script>
 var papers = {"papers": [
   {
+    "title": "Positive species interactions shape species' range limits",
+    "authors": ["Pauline Stephan", "Bernat Bramon Mora", "Jake M. Alexander"],
+    "journal": "Oikos",
+    "date": "June 2021",
+    "vol": "--",
+    "pages": "--",
+    "doi": "https://doi.org/10.1111/oik.08146",
+    "localFileName": "Oikos2021",
+    "oa": true
+  },
+  {
     "title": "Assessing unintended human‐mediated dispersal using visitation networks",
     "authors": ["Rogini Runghen", "Bernat Bramon Mora", "Antonia Godoy-Lorite", "Daniel B. Stouffer"],
     "journal": "Journal of Applied Ecology",
@@ -53,7 +64,7 @@ var papers = {"papers": [
     "title": "Seeing the forest for the trees: putting multilayer networks to work for community ecology",
     "authors": ["Matthew C. Hutchinson", "Bernat Bramon Mora", "Shai Pilosof", "Allison K. Barner", "Sonia Kéfi", "Elisa Thébault", "Pedro Jordano", "Daniel B. Stouffer"],
     "journal": "Functional Ecology",
-    "date": "November 2018",
+    "date": "Nov 2018",
     "vol": "33",
     "pages": "206--217",
     "doi": "https://doi.org/10.1111/1365-2435.13237",
@@ -172,7 +183,7 @@ function createPaper(paper){
 }
 
 // Fill in papers
-for (var i = 0; i < 6; i++) {
+for (var i = 0; i < 8; i++) {
     document.getElementById("latest-publications-row").appendChild(createPaper(papers.papers[i]))
 }
 </script>
