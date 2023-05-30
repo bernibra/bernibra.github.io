@@ -447,9 +447,7 @@ summary:hover {
 }
 
 .arrow a span {
-  position: relative;
-  top: 1vh;
-  left: 50%;
+  position: absolute;
   width: 3.5vh;
   height: 3.5vh;
   margin-left: -1.75vh;
@@ -458,6 +456,8 @@ summary:hover {
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   -webkit-animation: sdb05 10s infinite;
+  -webkit-transform: translate(50%, 1vh);
+  transform: translate(50%, 1vh);
   animation: sdb05 3s infinite;
   box-sizing: border-box;
 }
