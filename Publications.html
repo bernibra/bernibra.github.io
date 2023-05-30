@@ -84,6 +84,11 @@ var papers = {"papers": [
   }
 ]}
 
+    
+console.log(paper)
+console.log(paper.localFileName)
+
+
 function boldIfBernat(thisAuthor){
   if (thisAuthor == "Bernat Bramon Mora"){
     return "<b>" + thisAuthor + "</b>"
@@ -179,8 +184,6 @@ function createPaper(paper){
   paperIntRow.appendChild(descColumn)
   thisPaper.appendChild(paperIntRow)
 
-  console.log(paper)
-  console.log(paper.localFileName)
   return thisPaper
 }
 
