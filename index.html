@@ -420,15 +420,14 @@
             var maincircle = d3.selectAll("#foto-0");
 
             if(focus.children.length==1 && focus!==root && focus.data.name!="Projects"){
+                console.log("Print 1");
                trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")}).style("display", "inline-block")
                .on("end", function(){
                      if (this.scrollTop + this.clientHeight >= this.scrollHeight){
-                         console.log("Test")
                          d3.select(".arrow").style("display", "none");
                          d3.select("#blurrystuff").style("display", "none");
                          d3.select("#content").style("z-index", 1000);
                      }else{
-                         
                          d3.select(".arrow").transition(transitionname).style("display", "block");
                          d3.select("#blurrystuff").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 80%)")).transition(transitionname).style("display", "inline-block");
                          d3.select("#content").style("z-index", 1000);
@@ -477,6 +476,7 @@
       
       d3.select("#htmlcontent")
       .on("scroll.scroller", function() {
+          console.log("Print 2");
           if (this.scrollTop + this.clientHeight >= this.scrollHeight){
                   d3.select(".arrow").style("display", "none");
                   d3.select("#blurrystuff").style("display", "none");
