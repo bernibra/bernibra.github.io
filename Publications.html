@@ -84,11 +84,6 @@ var papers = {"papers": [
   }
 ]}
 
-    
-console.log(paper)
-console.log(paper.localFileName)
-
-
 function boldIfBernat(thisAuthor){
   if (thisAuthor == "Bernat Bramon Mora"){
     return "<b>" + thisAuthor + "</b>"
@@ -188,7 +183,7 @@ function createPaper(paper){
 }
 
 // Fill in papers
-for (var i = 0; i < 8; i++) {
+for (var i = 1; i < 7; i++) {
     document.getElementById("latest-publications-row").appendChild(createPaper(papers.papers[i]))
 }
 </script>
