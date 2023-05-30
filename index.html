@@ -423,6 +423,7 @@
                trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")}).style("display", "inline-block")
                .on("end", function(){
                      if (this.scrollTop + this.clientHeight >= this.scrollHeight){
+                         console.log("Test")
                          d3.select(".arrow").style("display", "none");
                          d3.select("#blurrystuff").style("display", "none");
                          d3.select("#content").style("z-index", 1000);
