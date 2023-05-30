@@ -420,13 +420,9 @@
             var maincircle = d3.selectAll("#foto-0");
 
             if(focus.children.length==1 && focus!==root && focus.data.name!="Projects"){
-                console.log("---------------------")
-                console.log(this.scrollTop + this.clientHeight);
-                console.log(this.scrollHeight)
-                console.log("---------------------")
                trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")}).style("display", "inline-block")
                .on("end", function(){
-                     if (this.scrollTop + this.clientHeight >= this.scrollHeight){
+                     if (this.scrollTop + this.clientHeight >= this.scrollHeight -1){
                          d3.select(".arrow").style("display", "none");
                          d3.select("#blurrystuff").style("display", "none");
                          d3.select("#content").style("z-index", 1000);
@@ -479,11 +475,7 @@
       
       d3.select("#htmlcontent")
       .on("scroll.scroller", function() {
-          console.log("---------------------")
-          console.log(this.scrollTop + this.clientHeight);
-          console.log(this.scrollHeight)
-          console.log("---------------------")
-          if (this.scrollTop + this.clientHeight >= this.scrollHeight){
+          if (this.scrollTop + this.clientHeight >= this.scrollHeight-1){
                   d3.select(".arrow").style("display", "none");
                   d3.select("#blurrystuff").style("display", "none");
               }else{
