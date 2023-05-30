@@ -182,8 +182,10 @@ function createPaper(paper){
   return thisPaper
 }
 
+console.log(papers.length);
+
 // Fill in papers
-for (var i = 1; i < 7; i++) {
+for (var i = 0; i < 8; i++) {
     document.getElementById("latest-publications-row").appendChild(createPaper(papers.papers[i]))
 }
 </script>
