@@ -292,6 +292,21 @@ body {
    pointer-events: none;
 }
 
+#contentDEEP {
+   position: absolute;
+   /* absolute position implies no width and height */
+   width: 100vw;
+   height: 100vw;
+   float:center;
+   padding-top:0%;
+   padding-right:0%;
+   padding-bottom:0%;
+   padding-left:0%;
+   left: 0px;
+   top: 0px;
+   pointer-events: none;
+}
+
 #htmlcontent {
    position: relative;
    float:center;
@@ -302,6 +317,10 @@ body {
    justify-content: center;
    align-items: center;
 }
+
+#htmlcontent::-webkit-scrollbar{
+    display: none;
+  }
 
 /* Papers *
 /* main .major-section:nth-child(even) {
@@ -363,6 +382,7 @@ summary:hover {
 .arrow a {
   position: relative;
   pointer-events: all;
+  top: 3vw;
   left: 50%;
   width: 100%;
   height: 100%;
@@ -378,11 +398,11 @@ summary:hover {
 
 .arrow a span {
   position: absolute;
-  width: 3.5vw;
-  height: 3.5vw;
+  width: 4vw;
+  height: 4vw;
   margin-left: -1.75vw;
-  border-left: 1px solid #000000;
-  border-bottom: 1px solid #000000;
+  border-left: 1.5px solid #000000;
+  border-bottom: 1.5px solid #000000;
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   -webkit-animation: sdb05 10s infinite;
@@ -418,12 +438,49 @@ summary:hover {
   }
 }
 
-#blurrystuff {
+#blurrystuff_t {
    display: none;
    position: relative;
    width: 100%;
-   height: 7vw;
-   top:-7vw;
-   background: linear-gradient(rgb(255,247,251,0), rgb(255,247,251,1) 80%);
+   height: 10vw;
+   top:-80vw;
+   background: linear-gradient(rgb(255,247,251,1) 100%, rgb(255,247,251,0));
    pointer-events: none;
+}
+
+#blurrystuff_b {
+   display: none;
+   position: relative;
+   width: 100%;
+   height: 10vw;
+   top:-10vh;
+   background: linear-gradient(rgb(255,247,251,0), rgb(255,247,251,1) 100%);
+   pointer-events: none;
+}
+
+
+/*
+Pages deep in projects
+*/
+
+.collapsing {
+    transition: height 1.5s;
+}
+
+code {
+    font-family: monospace;
+	background-color: #d9d9d9;
+    display: inline-block; 
+	color: #252525;
+}
+
+.row {
+  margin: 15px 0px;
+}
+
+#codebox {
+	border: 0.5px dotted black; /*Add 1px solid border, use any color you want*/
+	background-color: #d9d9d9; /*Add a background color to the box*/
+	margin-left: 0%;
+	margin-right: 5%;
 }

@@ -22,13 +22,14 @@
     <link rel='stylesheet' media='screen and (orientation:landscape)' href='css/landscape.css' />
 
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139906783-1"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KTCPXZ48JE"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'UA-139906783-1');
+
+      gtag('config', 'G-KTCPXZ48JE');
     </script>
 
 </head>
@@ -231,7 +232,8 @@
       d3.select("#content").append("div").classed("arrow", true)
           .insert("a")
           .insert("span");
-          d3.select("#content").append("div").attr("id", "blurrystuff");
+      d3.select("#content").append("div").attr("id", "blurrystuff_b");
+      d3.select("#content").append("div").attr("id", "blurrystuff_t");
 
       
       var nodeEnter = g.selectAll("g.node")
@@ -296,14 +298,30 @@
 
       var node = g.selectAll("g.node,text.label");
 
-
+      // Go backwards once if we click on the background of the present node
       svg.style("background", "none")
           .on("click", function() {
               if(!isTransition){
                   isTransition = true;
-                    zoom(root);
+                  if(focus.depth>1){
+                      zoom(focus.parent);
+                  }else{
+                      zoom(root);
+                  }
               }
             });
+          
+      // Go backwards as well when we click on the margins
+      d3.select("body").on("click", function() {
+          if(!isTransition){
+              isTransition = true;
+              if(focus.depth>1){
+                  zoom(focus.parent);
+              }else{
+                  zoom(root);
+              }
+          }
+        });
 
       zoomTo([root.x, root.y, root.r * smallr *2 + margin]);
 
@@ -312,6 +330,7 @@
             var slapse=500, mlapse=1500, llapse=2000;
             var transitionname = "trans".concat("_", focus.depth)
 
+            // This controls how much we are zooming in or out and the speed in which we do so
             var trans = d3.transition(transitionname)
             .duration(d3.event.altKey ? 7500 : mlapse)
             .delay(function(d){
@@ -329,7 +348,7 @@
                   if(focus.depth==2){
                   var i = d3.interpolateZoom(view, [focus.data.x, focus.data.y, focus.r * 1.7  + margin]);
                   }else if(focus.depth>2){
-                  var i = d3.interpolateZoom(view, [focus.data.x, focus.data.y, focus.r * 1.6  + margin]);
+                  var i = d3.interpolateZoom(view, [focus.data.x, focus.data.y, focus.r * 1.1  + margin]);
                   }else{
                   var i = d3.interpolateZoom(view, [focus.data.x, focus.data.y, focus.r * 2 + margin]);
                   }
@@ -337,6 +356,7 @@
               }
             });
 
+            // As we move in or out, we change the visibility of the nodes, to make them apear or desapear.
             trans.selectAll("g.node")
             .filter(function(d) { return (d.parent===focus)  || this.style.display === "inline"; })
             .delay(slapse)
@@ -382,11 +402,14 @@
                 .on("end", function(d) { if (d.depth>focus.depth+1)  this.style.display = "none"; });
             }
 
+            // Remove icon for projects if we go deep
             if(focus.data.name=="Projects"){
             d3.select("#foto-4").transition(transitionname).delay(slapse).duration(2*slapse).ease(d3.easeLinear)
               .style("opacity", 0);
             }
-
+            
+            // dealing with the text
+            // making them appear as we go deeper
             trans.selectAll("text")
             .filter(function(d) { return d.parent === focus && this.style.display !== "inline"; })
             .delay(mlapse)
@@ -394,6 +417,7 @@
             .style("fill-opacity", function(d) { return d.parent === focus ? 1 : 0; })
             .styleTween("display", function() { return d3.interpolate("none", "inline"); });
 
+            // making them disappear or back to normal size as we go deeper or backwards
             trans.selectAll("text")
             .filter(function(d) { return (this.style.display === "inline"); })
             .delay(function(d){return (d.depth<=focus.depth+1 || d===focus)? 300 : slapse; })
@@ -403,15 +427,18 @@
             .attr("dy", function(d) {return  (d.depth<focus.depth)? -600 : d.data.position;})
             .style("font-size", function(d) {return  (d.depth<focus.depth)? fzfocus*2 : fzinitial;});
 
-
+            // changing size and position to make it a header
             trans.selectAll("text")
-            .filter(function(d) { return (this.style.display === "inline") && (d===focus); }).delay(slapse+100)
+            .filter(function(d) { return (this.style.display === "inline") && (d===focus); })
+            .delay(slapse+100)
             .attrTween("dy", function(d) { if(focus0.depth==3){return d3.interpolate(-600, -300);}
                                           else{return d3.interpolate(d.data.position, -300);}
                                         })
             .styleTween("font-size", function(){ if(focus0.depth==3){return d3.interpolate(fzfocus*2, fzfocus);}
-                                          else{return d3.interpolate(fzinitial, fzfocus);}});
-
+                                          else{return d3.interpolate(fzinitial, fzfocus);}})
+            .filter(function(d) {if(focus.data.name!="Projects"){return d.depth == focus.depth && d.depth>1; }
+                else{return false;}})
+            .style("fill-opacity", 0);
 
             /*d3.selectAll("images").filter(function(d) { return (d.depth<=focus.depth+1)  || this.style.display === "inline"; })
             .transition().delay(slapse).duration(mlapse).ease(d3.easeLinear)
@@ -419,25 +446,25 @@
 
             var maincircle = d3.selectAll("#foto-0");
 
-            if(focus.children.length==1 && focus!==root && focus.data.name!="Projects"){
+            // Load HTML content
+            if(focus.children.length==1 && focus!==root){
                trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")}).style("display", "inline-block")
                .on("end", function(){
                      if (this.scrollTop + this.clientHeight >= this.scrollHeight -1){
                          d3.select(".arrow").style("display", "none");
-                         d3.select("#blurrystuff").style("display", "none");
+                         d3.select("#blurrystuff_b").style("display", "none");
                          d3.select("#content").style("z-index", 1000);
                      }else{
                          d3.select(".arrow").transition(transitionname).style("display", "block");
-                         d3.select("#blurrystuff").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 80%)")).transition(transitionname).style("display", "inline-block");
+                         d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).transition(transitionname).style("display", "inline-block");
                          d3.select("#content").style("z-index", 1000);
-
                      }
                  });
             }else{
                document.getElementById('htmlcontent').scrollTop=0;
                trans.select("#htmlcontent").style("display", "none");
                trans.select(".arrow").style("display", "none");
-               trans.select("#blurrystuff").style("display", "none")
+               trans.select("#blurrystuff_b").style("display", "none");
                d3.select("#content").style("z-index", -1000);
             }
 
@@ -462,6 +489,11 @@
             }*/
             if(focus.depth>1){
                 d3.select("body").transition(transitionname).delay(1000).duration(1000).style("background-color", "#2e3436");
+                if(focus.depth>2){
+                    d3.select("#content").style("padding", "0%");
+                }else{
+                    d3.select("#content").style("padding-top", "17%").style("padding-left", "12%").style("padding-right", "12%").style("padding-bottom", "17%");
+                }
             }else{
                 d3.select("body").transition(transitionname).delay(500).duration(1000).style("background-color", "white");
             }
@@ -477,10 +509,12 @@
       .on("scroll.scroller", function() {
           if (this.scrollTop + this.clientHeight >= this.scrollHeight-1){
                   d3.select(".arrow").style("display", "none");
-                  d3.select("#blurrystuff").style("display", "none");
+                  d3.select("#blurrystuff_b").style("display", "none");
+                  d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).style("display", "inline-block");
               }else{
                   d3.select(".arrow").style("display", "block");
-                         d3.select("#blurrystuff").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 80%)")).style("display", "inline-block");
+                  d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).style("display", "inline-block");
+                  d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).style("display", "inline-block");
                          
               }
           });

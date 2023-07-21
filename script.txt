@@ -1,0 +1,27 @@
+1) Replace "Projects" by "skills"
+
+- Bayesian and Frequentist Statistics
+  + Plant Stan: stan, mvrstan, brms
+  + multinomial regression Nat Comm
+  + pymfinder
+- Data Processing Pipelines:
+  + CITE-wrangling
+  + multicenter
+- Data Visualization:
+  + Some of the most beautiful visualizations of my work as a scientist (add code to it)
+  + d3 is my website
+- Dashboards:
+  + workshop website in gitlab
+  + CITE-wrangling shinyapps
+  + MIREN data
+- ML approaches
+  + Muritz
+  + pymfinder
+
+2) Add links to Resume and change structure
+
+I should add links for all the thinks I am mention, the BDSC, the ETHZ, the Universities, the code and websites for workshops. I should also add a selected software section.
+
+3) Modify colours and remove titles for Resume and Conferences
+
+
