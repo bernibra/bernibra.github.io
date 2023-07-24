@@ -232,8 +232,8 @@
       d3.select("#content").append("div").classed("arrow", true)
           .insert("a")
           .insert("span");
-      d3.select("#content").append("div").attr("id", "blurrystuff_b");
-      d3.select("#content").append("div").attr("id", "blurrystuff_t");
+      d3.select("#content").insert("div").attr("id", "blurrystuff_b");
+      d3.select("#content").insert("div").attr("id", "blurrystuff_t");
 
       
       var nodeEnter = g.selectAll("g.node")
@@ -453,10 +453,17 @@
                      if (this.scrollTop + this.clientHeight >= this.scrollHeight -1){
                          d3.select(".arrow").style("display", "none");
                          d3.select("#blurrystuff_b").style("display", "none");
+                         d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).transition(transitionname).style("display", "inline-block");
+                         d3.select("#content").style("z-index", 1000);
+                     } else if (this.scrollTop <= 1){
+                         d3.select(".arrow").transition(transitionname).style("display", "block");
+                         d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).transition(transitionname).style("display", "inline-block");
+                         d3.select("#blurrystuff_t").style("display", "none");
                          d3.select("#content").style("z-index", 1000);
                      }else{
                          d3.select(".arrow").transition(transitionname).style("display", "block");
                          d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).transition(transitionname).style("display", "inline-block");
+                         d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).transition(transitionname).style("display", "inline-block");
                          d3.select("#content").style("z-index", 1000);
                      }
                  });
@@ -465,6 +472,7 @@
                trans.select("#htmlcontent").style("display", "none");
                trans.select(".arrow").style("display", "none");
                trans.select("#blurrystuff_b").style("display", "none");
+               trans.select("#blurrystuff_t").style("display", "none");
                d3.select("#content").style("z-index", -1000);
             }
 
@@ -510,11 +518,15 @@
           if (this.scrollTop + this.clientHeight >= this.scrollHeight-1){
                   d3.select(".arrow").style("display", "none");
                   d3.select("#blurrystuff_b").style("display", "none");
-                  d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).style("display", "inline-block");
-              }else{
+                  d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).style("display", "inline-block");
+              } else if (this.scrollTop <= 1){
                   d3.select(".arrow").style("display", "block");
                   d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).style("display", "inline-block");
-                  d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).style("display", "inline-block");
+                  d3.select("#blurrystuff_t").style("display", "none");
+              } else {
+                  d3.select(".arrow").style("display", "block");
+                  d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).style("display", "inline-block");
+                  d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).style("display", "inline-block");
                          
               }
           });
