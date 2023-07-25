@@ -448,25 +448,35 @@
 
             // Load HTML content
             if(focus.children.length==1 && focus!==root){
-               trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")}).style("display", "inline-block")
-               .on("end", function(){
-                     if (this.scrollTop + this.clientHeight >= this.scrollHeight -1){
+               if ( focus.depth < 3){
+                   trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")}).style("display", "inline-block")
+                   .on("end", function(){
+                         if (this.scrollTop + this.clientHeight >= this.scrollHeight -1){
+                             d3.select(".arrow").style("display", "none");
+                             d3.select("#blurrystuff_b").style("display", "none");
+                             d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).transition(transitionname).style("display", "inline-block");
+                             d3.select("#content").style("z-index", 1000);
+                         } else if (this.scrollTop <= 1){
+                             d3.select(".arrow").transition(transitionname).style("display", "block");
+                             d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).transition(transitionname).style("display", "inline-block");
+                             d3.select("#blurrystuff_t").style("display", "none");
+                             d3.select("#content").style("z-index", 1000);
+                         }else{
+                             d3.select(".arrow").transition(transitionname).style("display", "block");
+                             d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).transition(transitionname).style("display", "inline-block");
+                             d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).transition(transitionname).style("display", "inline-block");
+                             d3.select("#content").style("z-index", 1000);
+                         }
+                     });
+               }else{
+                   trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")}).style("display", "inline-block")
+                   .on("end", function(){
                          d3.select(".arrow").style("display", "none");
                          d3.select("#blurrystuff_b").style("display", "none");
-                         d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).transition(transitionname).style("display", "inline-block");
-                         d3.select("#content").style("z-index", 1000);
-                     } else if (this.scrollTop <= 1){
-                         d3.select(".arrow").transition(transitionname).style("display", "block");
-                         d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).transition(transitionname).style("display", "inline-block");
                          d3.select("#blurrystuff_t").style("display", "none");
                          d3.select("#content").style("z-index", 1000);
-                     }else{
-                         d3.select(".arrow").transition(transitionname).style("display", "block");
-                         d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).transition(transitionname).style("display", "inline-block");
-                         d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).transition(transitionname).style("display", "inline-block");
-                         d3.select("#content").style("z-index", 1000);
-                     }
-                 });
+                     });
+               }
             }else{
                document.getElementById('htmlcontent').scrollTop=0;
                trans.select("#htmlcontent").style("display", "none");
@@ -515,20 +525,26 @@
       
       d3.select("#htmlcontent")
       .on("scroll.scroller", function() {
-          if (this.scrollTop + this.clientHeight >= this.scrollHeight-1){
-                  d3.select(".arrow").style("display", "none");
-                  d3.select("#blurrystuff_b").style("display", "none");
-                  d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).style("display", "inline-block");
-              } else if (this.scrollTop <= 1){
-                  d3.select(".arrow").style("display", "block");
-                  d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).style("display", "inline-block");
-                  d3.select("#blurrystuff_t").style("display", "none");
-              } else {
-                  d3.select(".arrow").style("display", "block");
-                  d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).style("display", "inline-block");
-                  d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).style("display", "inline-block");
-                         
-              }
+          if(focus.depth<3){
+            if (this.scrollTop + this.clientHeight >= this.scrollHeight-1){
+                    d3.select(".arrow").style("display", "none");
+                    d3.select("#blurrystuff_b").style("display", "none");
+                    d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).style("display", "inline-block");
+                } else if (this.scrollTop <= 1){
+                    d3.select(".arrow").style("display", "block");
+                    d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).style("display", "inline-block");
+                    d3.select("#blurrystuff_t").style("display", "none");
+                } else {
+                    d3.select(".arrow").style("display", "block");
+                    d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).style("display", "inline-block");
+                    d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).style("display", "inline-block");
+                           
+                }
+            } else {
+                d3.select(".arrow").style("display", "none");
+                d3.select("#blurrystuff_b").style("display", "none");
+                d3.select("#blurrystuff_t").style("display", "none");
+            }
           });
       
       
