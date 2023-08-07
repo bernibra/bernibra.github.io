@@ -1,114 +1,43 @@
-        
-<div class="container">
 
-    <header>
-      <div class="jumbotron">
-        <div class="container-header">
-          <h1>Data rich, insight poor</h1>
-          <p>How to use data-science to empower management and conservation</p>
-        </div>
-      </div>
-    </header>
-    
-    <div class="row">
-            <div class="col-md-6" id="slides">
-              <h2>Get the slides</h2>
-              <p>Data-science means using data for responsible decision making. It has been embraced by companies in many fields for optimizing their processes and improving management resources.</p>
-              <p><a class="btn btn-default" href="/presentation-workshop.pptx" role="button">Download .ppt &raquo;</a></p>
-            </div>
-            <div class="col-md-6" id="fishing">
-              <h2>See it in action</h2>
-              <p>See how real-world monitoring data can be explored on the fly. Data was collected as part of the subsistence fishing monitoring program by the <a href="http://www.sif.sc/">Seychelles Islands Foundation</a></p>
-              <p><a class="btn btn-default" href="monitoring-demo/" role="button">View dashboard demo &raquo;</a></p>
-            </div>
-            <div class="col-md-6" id="live">
-              <h2>Try it yourself</h2>
-              <p>This demostration takes data from <a href="https://ee.kobotoolbox.org/x/#YCb8">an online/offline electronic survey that you can fill yourself</a>. Then, analyses the collected data can take place in real-time to enable quick decision making.</p>
-              <p><a class="btn btn-default" href="live-demo/" role="button">Real-time demo &raquo;</a> <a class="btn btn-default" href="https://ee.kobotoolbox.org/x/#YCb8" role="button">Fill survey &raquo;</a></p>
-            </div>
-            <div class="col-md-6" id="step">
-              <h2>Make your own</h2>
-              <p>Follow a step-by-step guide to create your own electronic survey and real-time dashboard using <a href="http://www.kobotoolbox.org/">KoBoToolbox</a>, <a href="https://www.qlik.com/us/">Qlik</a> and some of the basic tools of the R package <a href="https://shiny.rstudio.com/">Shiny</a></p>
-              <p><a class="btn btn-default" data-toggle="collapse" data-target="#tutorial" role="button">Tutorial &raquo;</a></p>
-            </div>
-                </div>
-                <hr>
-                
-                <div class="collapse" id = "tutorial">
-                    
-        
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4>Sign up for a data collection tool</h4>
-                            <p>For this tutorial we will use <a href="http://www.kobotoolbox.org/">KoBoToolbox</a>, a free and open source set of tools for field data collection. It helps you to create surveys that can be conducted entirely while being offline, allowing its use in challenging environments. One of the crucial features of KoBoToolbox is that is easy to use, and with very little effort you can set up an account and design your own survey.
-                            <p>There are many other data collection tools available though. <a href="https://ona.io/home/">Ona</a>, <a href="https://enketo.org/">Enketo</a> and <a href="https://opendatakit.org/">Open Data Kit</a>, and <a href="http://www.proofsafe.com.au">ProofSade</a> are some of them.</p>
-                        <p><a class="btn btn-default" href="https://kf.kobotoolbox.org/forms/accounts/register/" role="button">Create Account &raquo;</a></p>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="embed-responsive embed-responsive-16by9" style="margin-left: 5%; margin-right: 10%;">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/4PNtT51h3CQ?rel=0" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
+<div class="container-projects">
 
-                    <div class="row">
+<header>
+<div class="jumbotron">
+<div class="container-header">
+  <h1 class = "moltgran">Data Visualization and Dashboards</h1>
+  <p class = "petit">Some of my work using data visualization software</p>
+</div>
+</div>
+</header>
 
-                        <div class="col-md-6 col-md-push-6" >
-                            <h4>Create your first electronic survey</h4>
-                            <p>Once you've successfully logged in to KoBoToolbox, you can create your first survey from scratch by clicking the <b>NEW</b> icon and selecting <b>Project</b>. Choose a Project Name and a short description for your Project. This will create an empty form where you can add any question you want.</p>
-                            <p>Clicking the <span class="glyphicon glyphicon-plus"></span> icon will add a new question. For the purpose of this tutorial, we will keep this form as simple as possible by simply adding a question named 'Location'. Select the <span class="glyphicons glyphicons-map-marker"></span> <b>Point</b> option to create a map for the users to add locations. Use the <span class="glyphicon glyphicon-cog"></span> to select a 'Mandatory Response' in order to avoid empty entries. When creating real world surveys, make sure that the field <b>Data Column Name</b> is a short word easy to remember.</p>
-                            <p>Save the form by clicking <b>SAVE</b> and finish the edition with the <span class="glyphicon glyphicon-remove"></span> icon. By doing this, your form will automatically be stored as a draft in your account. Check what the form looks like by clicking the <span class="glyphicon glyphicon-eye-open"></span> icon. If you are happy with the results, you can select <b>DEPLOY</b> to create your electronic survey. Otherwise, you can edit the form as many times as you need.</p>
-                            <p>If you now check select the <b>Deployed</b> tab you will find the current version of your electronic survey. Notice that you can edit and redeploy the survey if necessary. Try to fill out the form multiple times as if you were collecting data in the field. To do so, you can open the form by clicking the <b>OPEN</b> option in the 'Collect data' section. Alternatively, you can ask somebody to fill out your form by sending them a link (use the <b>COPY</b> option to obtain the link to the form). This will generate multiple entries in your database.</p>
-                        </div>
-                        <div class="col-md-6 col-md-pull-6">
-                                <img src="tutorial/create_survey.png" class="img-responsive" alt="firstsurvey">
-                        </div>
+<div class="row container-projects-content">
+    <div class="col-md-6">
+      <h2 class = "gran">Data rich, insight poor</h2>
+      <p class = "petit">A workshop that I co-organized with <a href="https://www.cagua.co/">Fernando Cagua</a> on how to use data-science to empower management and conservation. In this worshop, we taught how to create electronic surveys and interactive real-time dashboards to ecologists. The workshop has been presented several times, including at the EcoTAS 2017 conference and at ETHZ.<br>
+      <a class="btn btn-default button button2 petit" href="https://bernibra.gitlab.io/plant-ecology-survey/"  target="_blank">Website</a></p>
+    </div>
+    <div class="col-md-6">
+      <h2 class = "gran">Scientific publications</h2>
+      <p class = "petit">Throughout my scientific career, I developed visualizations that have been published as part of several scientific publications using different software libraries. Examples of these include: a, b and c</p>
+    </div>
+    <div class="col-md-6">
+      <h2 class = "gran">MIREN data collection tool</h2>
+      <p class = "petit">Using Bayesian statistics to characterize the dynamics of plant-pollinator interactions using multinomial logistic regressions.<br>
+      <a class="btn btn-default button button2 petit" href="https://github.com/bernibra/pollinator-multinomial/tree/main"  target="_blank">Repository</a></p>
+    </div>
 
-                    </div>
+    <div class="col-md-6">
+      <h2 class = "gran">A data formatting tool</h2>
+      <p class = "petit">Using Bayesian statistics to characterize the dynamics of plant-pollinator interactions using multinomial logistic regressions.<br>
+      <a class="btn btn-default button button2 petit" href="https://github.com/bernibra/pollinator-multinomial/tree/main"  target="_blank">Repository</a></p>
+    </div>
+</div>
 
-                    <div class="row">
+<!--<footer>
+  </p>&copy; 2017 <a href="http://cagua.co">Fernando Cagua</a>, Bernat Bramon Mora, Nancy Bunbury, and Tim Robinson</p>
+  <p>Online hosting sponsored by the <a href="http://www.sif.sc/">Seychelles Islands Foundation</a>. Additional thanks for logistical and financial support to the University of Wyoming, and <a href="www.stoufferlab.org">Daniel Stouffer</a> at the University of Canterbury.</p>
+  </footer>-->
 
-                        <div class="col-md-6">
-                            <h4>A quick exploration of the data</h4>
-                            <p>There are many ways to quickly explore the results of your survey. One option is to directly explore your data using KoboToolbox to have a first look at it. Try selecting the <b>DATA</b> tab on top of the page and start exploring your data.</p>
-                            <p>However, usually you might want to other more useful tools. Platforms such as <a href="https://www.tableau.com/">tableau</a> and <a href="https://www.qlik.com/us/">Qlik</a> provide you with a friendly interface to analyse and explore your data. These tools are used by many small and medium companies to provide business intelligence on the fly. Data can be downloaded from KoboToolbox by simply clicking the <b>Downloads</b> tab and selecting the file format that you need.</p>
-                            <p>More powerful analysis can be made using programing languages such as R or Python. If you are familiar with them, you can even interact with your data without downloading, ensuring that your script always analyse the most updated version of your data. In R, for example, few lines of code will automatically import your data to your R session (see the code attached). Try downloading the code and adding your <b>username</b>, <b>password</b> and the <b>id</b> of your form. You can find the <b>id</b> of your forms <a href="https://kc.kobotoolbox.org/api/v1/data?format=json">here</a></p>
-
-
-                        </div>
-
-                        <div class="col-md-6">
-                            <br>
-                            <br>
-                            <br>
-                            <div id="codebox">
-                                    <code><br>
-                                      &nbsp&nbsplink&nbsp<-&nbsppaste("https://kc.kobotoolbox.org/api/v1/data",<br>
-                                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp as.character(<b>id</b>), sep="/")<br><br>
-                                      
-                                       &nbsp&nbspdata&nbsp<-&nbsphttr::GET(link,<br>
-                                      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp httr::authenticate(<b>username</b>, <b>password</b>))<br><br>
-                                       &nbsp&nbspdata&nbsp<-&nbsphttr::content(data)<br><br>
-                                       &nbsp&nbspdata&nbsp<-&nbspjsonlite::toJSON(data)<br><br>
-                                       &nbsp&nbspdata&nbsp<-&nbspjsonlite::fromJSON(data)<br><br>
-                                       &nbsp&nbspdata&nbsp<-&nbspstrsplit(unlist(data[,"Location"]), split=" ")<br><br>
-                                    </code>
-                            </div>
-                            <br>
-                            <p><a class="btn btn-default" href="tutorial/tutorial.R" role="button">Download R code &raquo;</a></p>
-                        </div>
-
-                    </div>
-        
-
-            </div>
-
-          <footer>
-          </p>&copy; 2017 <a href="http://cagua.co">Fernando Cagua</a>, Bernat Bramon Mora, Nancy Bunbury, and Tim Robinson</p>
-          <p>Online hosting sponsored by the <a href="http://www.sif.sc/">Seychelles Islands Foundation</a>. Additional thanks for logistical and financial support to the University of Wyoming, and <a href="www.stoufferlab.org">Daniel Stouffer</a> at the University of Canterbury.</p>
-          </footer>
-        </div>
-    
 </div>
 
 
