@@ -51,7 +51,7 @@
      ]
     },
     {
-     "name": "Projects",
+     "name": "Data Skills",
      "color":"#f5f5f5",
      "stroke":"#525252",
      "padding":10,
@@ -62,15 +62,15 @@
      "y":713.742277328938,
      "apagar":"si",
      "children": [
-         {"name": "Visualization", "color":"rgb(217,217,217,1)", "colort":"rgb(217,217,217,0)", "stroke":"#525252", "padding":2,"switch":"on", "img":"images/projects.png",
+         {"name": "Visualization", "color":"rgb(217,217,217,1)", "colort":"rgb(217,217,217,0)", "stroke":"#525252", "padding":2,"switch":"on", "img":"images/visualization.png",
              "x":392, "y":705, "position":-70,"children": [
                  {"name":"text", "color":"rgb(217,217,217,1)", "colort":"rgb(217,217,217,0)", "stroke":"#d9d9d9", "padding":2, "switch":"off" , "size": 10,
                      "x":392, "y":705, "position":-40}]},
-         {"name": "Statistics","color":"rgb(217,217,217,1)", "colort":"rgb(217,217,217,0)", "stroke":"#525252", "padding":2,"switch":"on", "img":"images/model.png", "size": 10,
+         {"name": "Machine Learning","color":"rgb(217,217,217,1)", "colort":"rgb(217,217,217,0)", "stroke":"#525252", "padding":2,"switch":"on", "img":"images/code.png", "size": 10,
              "x":548, "y":705, "position":-70,"children": [
                  {"name":"text", "color":"rgb(217,217,217,1)", "colort":"rgb(217,217,217,0)", "stroke":"#d9d9d9", "padding":2, "switch":"off" , "size": 10,
                      "x":548, "y":705, "position":-40}]},
-         {"name": "Machine Learning","color":"rgb(217,217,217,1)", "colort":"rgb(217,217,217,0)", "stroke":"#525252", "padding":2,"switch":"on", "img":"images/code.png", "size": 10,
+         {"name": "Statistics","color":"rgb(217,217,217,1)", "colort":"rgb(217,217,217,0)", "stroke":"#525252", "padding":2,"switch":"on", "img":"images/model.png", "size": 10,
              "x":470, "y":820, "position":-70,"children": [
                  {"name":"text", "color":"rgb(217,217,217,1)", "colort":"rgb(217,217,217,0)", "stroke":"#d9d9d9", "padding":2, "switch":"off" , "size": 10,
                      "x":470, "y":820, "position":-40}]},

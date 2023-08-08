@@ -374,7 +374,7 @@
 
                 trans.selectAll("image")
                 .filter(function(d) { if (focus.depth>=3){
-                                          return ((d.depth<=focus.depth+1)  || this.style.display === "inline") && (d.data.name!="Projects"); 
+                                          return ((d.depth<=focus.depth+1)  || this.style.display === "inline") && (d.data.name!="Data Skills");
                                       }else{
                                           return (d.depth<=focus.depth+1)  || this.style.display === "inline"; 
                                       }})
@@ -392,7 +392,7 @@
 
                 trans.selectAll("image")
                 .filter(function(d) { if (focus.depth>=3){
-                                          return ((d.depth<=focus.depth+1)  || this.style.display === "inline") && (d.data.name!="Projects"); 
+                                          return ((d.depth<=focus.depth+1)  || this.style.display === "inline") && (d.data.name!="Data Skills");
                                       }else{
                                           return (d.depth<=focus.depth+1)  || this.style.display === "inline"; 
                                       }})
@@ -402,8 +402,8 @@
                 .on("end", function(d) { if (d.depth>focus.depth+1)  this.style.display = "none"; });
             }
 
-            // Remove icon for projects if we go deep
-            if(focus.data.name=="Projects"){
+            // Remove icon for Data Skills if we go deep
+            if(focus.data.name=="Data Skills"){
             d3.select("#foto-4").transition(transitionname).delay(slapse).duration(2*slapse).ease(d3.easeLinear)
               .style("opacity", 0);
             }
@@ -436,7 +436,7 @@
                                         })
             .styleTween("font-size", function(){ if(focus0.depth==3){return d3.interpolate(fzfocus*2, fzfocus);}
                                           else{return d3.interpolate(fzinitial, fzfocus);}})
-            .filter(function(d) {if(focus.data.name!="Projects"){return d.depth == focus.depth && d.depth>1; }
+            .filter(function(d) {if(focus.data.name!="Data Skills"){return d.depth == focus.depth && d.depth>1; }
                 else{return false;}})
             .style("fill-opacity", 0);
 
