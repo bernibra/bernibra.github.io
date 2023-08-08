@@ -6,15 +6,13 @@
 - Data Visualization:
   + Some of the most beautiful visualizations of my work as a scientist (add code to it)
   + d3 is my website
-- Dashboards:
   + workshop website in gitlab
   + CITE-wrangling shinyapps
-  + MIREN data
 - ML approaches
   + Muritz
   + pymfinder
   + CITE-wrangling
-  + multicenter
+  + resoldre
 
 2) Add links to Resume and change structure
 
