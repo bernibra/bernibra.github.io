@@ -5,7 +5,19 @@
 
 <script>
 var papers = {"papers": [
-  {
+ {
+    "title": "Uncovering broad macroecological patterns by comparing the shape of species' distributions along environmental gradients",
+    "authors": ["Bernat Bramon Mora", "Antoine Guisan", "Jake M. Alexander"],
+    "journal": "The American Naturalist",
+    "date": "(accepted)",
+    "vol": "--",
+    "pages": "--",
+    "doi": "-",
+    "localFileName": "AmNat2023",
+    "oa": false,
+    "published": false
+ },
+ {
     "title": "Positive species interactions shape species' range limits",
     "authors": ["Pauline Stephan", "Bernat Bramon Mora", "Jake M. Alexander"],
     "journal": "Oikos",
@@ -14,7 +26,8 @@ var papers = {"papers": [
     "pages": "--",
     "doi": "https://doi.org/10.1111/oik.08146",
     "localFileName": "Oikos2021",
-    "oa": true
+    "oa": true,
+    "published": true
   },
   {
     "title": "Assessing unintended human‐mediated dispersal using visitation networks",
@@ -25,7 +38,8 @@ var papers = {"papers": [
     "pages": "777--788",
     "doi": "https://doi.org/10.1111/1365-2664.13829",
     "localFileName": "JAE2021",
-    "oa": true
+    "oa": true,
+    "published": true
  },
   {
     "title": "Untangling the seasonal dynamics of plant-pollinator communities",
@@ -36,7 +50,8 @@ var papers = {"papers": [
     "pages": "4086",
     "doi": "https://doi.org/10.1038/s41467-020-17894-y",
     "localFileName": "NatComm2020",
-    "oa": true
+    "oa": true,
+    "published": true
   },
   {
     "title": "Unmasking structural patterns in incidence matrices: an application to ecological data",
@@ -47,7 +62,8 @@ var papers = {"papers": [
     "pages": "20180747",
     "doi": "https://doi.org/10.1098/rsif.2018.0747",
     "localFileName": "JRI2019",
-    "oa": true
+    "oa": true,
+    "published": true
   },
   {
     "title": "pymfinder: a tool for the motif analysis of binary and quantitative complex networks",
@@ -58,7 +74,8 @@ var papers = {"papers": [
     "pages": "-",
     "doi": "https://doi.org/10.1101/364703",
     "localFileName": "pymfinder2018",
-    "oa": true
+    "oa": true,
+    "published": true
   },
   {
     "title": "Seeing the forest for the trees: putting multilayer networks to work for community ecology",
@@ -69,7 +86,8 @@ var papers = {"papers": [
     "pages": "206--217",
     "doi": "https://doi.org/10.1111/1365-2435.13237",
     "localFileName": "FunEco2018",
-    "oa": true
+    "oa": true,
+    "published": true
   },
   {
     "title": "Identifying a common backbone of interactions underlying food webs from different ecosystems",
@@ -80,7 +98,8 @@ var papers = {"papers": [
     "pages": "2603",
     "doi": "https://doi.org/10.1038/s41467-018-05056-0",
     "localFileName": "NatComm2018",
-    "oa": true
+    "oa": true,
+    "published": true
   }
 ]}
 
@@ -122,13 +141,23 @@ function createPaper(paper){
   thumbnailCol.classList.add("d-lg-block")
   // Create thumbnail
   var pdfLink = document.createElement("a")
-  pdfLink.setAttribute("href", "publications/" + paper.localFileName + ".pdf")
-  pdfLink.setAttribute("target", "_blank")
-  var thumbnail = document.createElement("img")
-  thumbnail.setAttribute("src", "publications/thumbnails/" + paper.localFileName + ".png")
-  thumbnail.setAttribute("alt", paper.title)
-  thumbnail.classList.add("img-fluid")
-  thumbnail.classList.add("img-thumbnail")
+  if(paper.published){
+      pdfLink.setAttribute("href", "publications/" + paper.localFileName + ".pdf");
+      pdfLink.setAttribute("target", "_blank");
+  }else{
+      pdfLink.setAttribute("href", "javascript:void(0);");
+      pdfLink.setAttribute("target", "_blank");
+  }
+  
+  var thumbnail = document.createElement("img");
+  thumbnail.setAttribute("src", "publications/thumbnails/" + paper.localFileName + ".png");
+  thumbnail.setAttribute("alt", paper.title);
+  thumbnail.classList.add("img-fluid");
+  thumbnail.classList.add("img-thumbnail");
+  thumbnail.setAttribute('target', '_blank');
+  if(!paper.published){
+      thumbnail.classList.add("disabled");
+  }
   // Create description column
   var descColumn = document.createElement("div")
   descColumn.classList.add("col-sm-7")
@@ -162,6 +191,7 @@ function createPaper(paper){
   doiLink.setAttribute("target", "_blank")
   doiLink.innerHTML = "<i class='ai ai-doi ai-2x' style='vertical-align:middle;'></i> " + paper.doi.substr(16)
   doiP.appendChild(doiLink)
+  
   // Apend objects first image then description then overall
   var thumbnailLink = pdfLink.cloneNode(true)
   thumbnailLink.appendChild(thumbnail)
@@ -171,11 +201,16 @@ function createPaper(paper){
 
   var titleLink = pdfLink.cloneNode(true)
   titleLink.appendChild(paperTitle)
+  if(!paper.published){
+      titleLink.classList.add("disabled");
+  }
   descColumn.appendChild(titleLink)
   descColumn.appendChild(authorsP)
   descColumn.appendChild(journalP)
-  descColumn.appendChild(doiP)
-
+  if(paper.published){
+      descColumn.appendChild(doiP)
+  }
+  
   paperIntRow.appendChild(descColumn)
   thisPaper.appendChild(paperIntRow)
 
