@@ -41,6 +41,10 @@ body {
        font-size: 10px;
 }
 
+.mini {
+       font-size: 9px;
+}
+
 .description-column {
     font-size: 90%;
 }
@@ -85,6 +89,9 @@ body {
    .petit {
        font-size: 2.7vh;
       }
+   .mini {
+       font-size: 2.6vh;
+      }
    #icons3 {
       padding-top:1.2em;
    }
@@ -124,6 +131,10 @@ body {
    .petit {
        font-size: 2.2vh;
       }
+   .mini {
+       font-size: 2.1vh;
+      }
+      
    #icons3 {
       padding-top:2em;
    }
@@ -162,6 +173,9 @@ body {
       }
    .petit {
        font-size: 13px;
+      }
+   .mini {
+       font-size: 12px;
       }
 
    #icons3 {
@@ -202,6 +216,9 @@ body {
    .petit {
        font-size: 15px;
       }
+   .mini {
+       font-size: 14px;
+      }
 
    #icons3 {
       padding-top:2em;
@@ -241,6 +258,9 @@ body {
       }
    .petit {
        font-size: 18px;
+      }
+   .mini {
+       font-size: 17px;
       }
 
    #icons3 {

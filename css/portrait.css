@@ -40,6 +40,9 @@ body {
 .petit {
        font-size: 10px;
 }
+.mini {
+       font-size: 9px;
+}
 
 .description-column {
     font-size: 90%;
@@ -85,6 +88,9 @@ body {
    .petit {
        font-size: 2.7vw;
       }
+   .mini {
+       font-size: 2.6vw;
+    }
    #icons3 {
       padding-top:1.2em;
    }
@@ -123,6 +129,9 @@ body {
    .petit {
        font-size: 2.2vw;
       }
+    .mini {
+       font-size: 2.1vw;
+    }
    #icons3 {
       padding-top:2em;
    }
@@ -163,6 +172,9 @@ body {
    .petit {
        font-size: 13px;
       }
+   .mini {
+       font-size: 12px;
+    }
 
    #icons3 {
       padding-top:2em;
@@ -200,6 +212,9 @@ body {
       }
    .petit {
        font-size: 17px;
+      }
+   .mini {
+       font-size: 16px;
       }
 
    #icons3 {
