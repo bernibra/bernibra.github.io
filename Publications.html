@@ -142,8 +142,13 @@ function createPaper(paper){
   // Create thumbnail
   var pdfLink = document.createElement("a")
   if(paper.published){
-      pdfLink.setAttribute("href", "publications/" + paper.localFileName + ".pdf");
-      pdfLink.setAttribute("target", "_blank");
+      if(paper.oa){
+          pdfLink.setAttribute("href", "publications/" + paper.localFileName + ".pdf");
+          pdfLink.setAttribute("target", "_blank");
+      }else{
+          pdfLink.setAttribute("href", paper.doi);
+          pdfLink.setAttribute("target", "_blank");
+      }
   }else{
       pdfLink.setAttribute("href", "javascript:void(0);");
       pdfLink.setAttribute("target", "_blank");
