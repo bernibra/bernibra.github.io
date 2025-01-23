@@ -31,7 +31,7 @@
      "x":470,
      "y":140,
      "children": [
-      {"name": "Sad", "color":"rgb(239, 235, 244,1)", "colort":"rgb(239, 235, 244,0)", "padding":2,
+      {"name": "Sad", "color":"rgb(250, 248, 251, 1)", "colort":"rgb(250, 248, 251, 0)", "padding":2,
                "size": 30, "position":-40, "x":470, "y":140}
      ]
     },
@@ -46,7 +46,7 @@
      "x":190,
      "y":470,
      "children": [
-      {"name": "articles", "color":"rgb(239, 235, 244,1)", "colort":"rgb(239, 235, 244,0)", "padding":2, "size": 50,
+      {"name": "articles", "color":"rgb(250, 248, 251, 1)", "colort":"rgb(250, 248, 251, 0)", "padding":2, "size": 50,
                "x":190, "y":470, "position":-40}
      ]
     },
@@ -88,7 +88,7 @@
      "x":470,
      "y":390,
      "children": [
-      {"name": "Education","color":"rgb(239, 235, 244,1)", "colort":"rgb(239, 235, 244,0)", "padding":2,"switch":"off", "size": 30,
+      {"name": "Education","color":"rgb(250, 248, 251, 1)", "colort":"rgb(250, 248, 251, 0)", "padding":2,"switch":"off", "size": 30,
                "x":470, "y":390 , "position":-40}
      ]
     },
@@ -103,7 +103,7 @@
      "x":750,
      "y":470,
      "children": [
-      {"name": "talks", "color":"rgb(239, 235, 244,1)", "colort":"rgb(239, 235, 244,0)", "padding":2, "size": 50, "x":750, "y":470,  "position":-40}
+      {"name": "talks", "color":"rgb(250, 248, 251, 1)", "colort":"rgb(250, 248, 251, 0)", "padding":2, "size": 50, "x":750, "y":470,  "position":-40}
      ]
     }
    ]
