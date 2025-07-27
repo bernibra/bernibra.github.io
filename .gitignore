@@ -1,2 +1,5 @@
 .Rhistory
 .DS_Store
+
+# Exclude bigger thumbnail images from Git tracking
+publications/thumbnails/bigger/
