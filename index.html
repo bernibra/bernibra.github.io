@@ -18,6 +18,7 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
 
+    <link rel='stylesheet' href='css/base.css' />
     <link rel='stylesheet' media='screen and (orientation:portrait)' href='css/portrait.css' />
     <link rel='stylesheet' media='screen and (orientation:landscape)' href='css/landscape.css' />
 
@@ -49,7 +50,8 @@
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
 
 <script>
 
@@ -64,6 +66,32 @@
 		});
     }
 
+    // Function to adjust SVG positioning for mobile portrait mode ONLY
+    function adjustSvgPosition() {
+        if (window.innerHeight > window.innerWidth) { // Portrait mode only
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const difference = height - width;
+            const yDist = difference * 0.1; // 10% of the difference
+            
+            const svgContainer = document.querySelector('.svg-container');
+            if (svgContainer) {
+                svgContainer.style.top = `calc(50vh - ${yDist}px)`;
+            }
+        }
+        // No changes for landscape mode - let CSS handle it normally
+    }
+
+    // Call the function on page load
+    window.addEventListener('load', adjustSvgPosition);
+    
+    // Call the function on window resize
+    window.addEventListener('resize', adjustSvgPosition);
+    
+    // Call the function on orientation change
+    window.addEventListener('orientationchange', function() {
+        setTimeout(adjustSvgPosition, 100); // Small delay to ensure orientation change is complete
+    });
 
     var svg = d3.select("div#container")
             .append("svg").attr("preserveAspectRatio", "xMinYMin meet").attr("viewBox", "0 0 960 960").classed("svg-content", true),
@@ -209,19 +237,86 @@
         return d.data.padding || 2;
         });
 
-    d3.json("flare.json", function(error, root) {
-      if (error) throw error;
+    fetch("flare.json")
+      .then(response => response.json())
+      .then(root => {
 
-      var root = d3.hierarchy(root)
-          .sum(function(d) { return d.size; })
-            .sort(function(a, b) {
-                                   return b.data.value-a.data.value; });
+        var root = d3.hierarchy(root)
+            .sum(function(d) { return d.size; })
+              .sort(function(a, b) {
+                                     return b.data.value-a.data.value; });
 
-      var focus = root,
-          nodes_obj = pack(root).descendants(),
-          view;
+        var focus = root,
+            nodes_obj = pack(root).descendants(),
+            view;
 
-          var isTransition = false;
+            var isTransition = false;
+            var navigationHistory = [];
+            var currentHistoryIndex = -1;
+            
+            // Initialize browser history management
+            function initializeHistory() {
+              // Add initial state to history
+              addToHistory(root);
+              
+              // Listen for browser back/forward button clicks
+              window.addEventListener('popstate', function(event) {
+                if (event.state && event.state.focusId) {
+                  // Find the node by ID and zoom to it
+                  var targetNode = findNodeById(root, event.state.focusId);
+                  if (targetNode && !isTransition) {
+                    isTransition = true;
+                    zoom(targetNode);
+                  }
+                }
+              });
+            }
+            
+            // Add current state to history
+            function addToHistory(node) {
+              var state = {
+                focusId: node.data.id || node.data.name,
+                depth: node.depth,
+                timestamp: Date.now()
+              };
+              
+              // Don't add if it's the same as the current state
+              if (navigationHistory.length > 0 && 
+                  navigationHistory[currentHistoryIndex] && 
+                  navigationHistory[currentHistoryIndex].focusId === state.focusId) {
+                return;
+              }
+              
+              // Remove any forward history if we're not at the end
+              if (currentHistoryIndex < navigationHistory.length - 1) {
+                navigationHistory = navigationHistory.slice(0, currentHistoryIndex + 1);
+              }
+              
+              navigationHistory.push(state);
+              currentHistoryIndex = navigationHistory.length - 1;
+              
+              // Update browser history
+              var url = window.location.pathname;
+              if (node.depth > 0) {
+                url += '#' + encodeURIComponent(node.data.name);
+              }
+              
+              window.history.pushState(state, node.data.name, url);
+            }
+            
+            // Find node by ID or name
+            function findNodeById(node, id) {
+              if ((node.data.id && node.data.id === id) || node.data.name === id) {
+                return node;
+              }
+              if (node.children) {
+                for (var i = 0; i < node.children.length; i++) {
+                  var found = findNodeById(node.children[i], id);
+                  if (found) return found;
+                }
+              }
+              return null;
+            }
 
 
     //Pattern definitions-------------------------------------------------------
@@ -242,13 +337,14 @@
         .attr("id", function(d,i){return "circle-"+i;})
         .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
         //.style("fill", function(d) { return d.depth==1? "url(#grump_avatar)":color(d.depth); })
-        .on("click", function(d) {
+                    .on("click", function(event, d) {
 
             if (focus !== d){
                 if(!isTransition){
                           isTransition = true;
-                          zoom(d);
-                          d3.event.stopPropagation()
+                          addToHistory(d);
+                          zoom(d, event);
+                          event.stopPropagation()
                 }
                 };
             })
@@ -304,8 +400,10 @@
               if(!isTransition){
                   isTransition = true;
                   if(focus.depth>1){
+                      addToHistory(focus.parent);
                       zoom(focus.parent);
                   }else{
+                      addToHistory(root);
                       zoom(root);
                   }
               }
@@ -316,23 +414,43 @@
           if(!isTransition){
               isTransition = true;
               if(focus.depth>1){
+                  addToHistory(focus.parent);
                   zoom(focus.parent);
               }else{
+                  addToHistory(root);
                   zoom(root);
               }
           }
         });
 
       zoomTo([root.x, root.y, root.r * smallr *2 + margin]);
+      
+      // Initialize browser history management
+      initializeHistory();
+      
+      // Handle URL hash on page load
+      if (window.location.hash) {
+        var hash = decodeURIComponent(window.location.hash.substring(1));
+        var targetNode = findNodeById(root, hash);
+        if (targetNode && targetNode !== root) {
+          // Don't add to history since this is initial load
+          setTimeout(function() {
+            if (!isTransition) {
+              isTransition = true;
+              zoom(targetNode);
+            }
+          }, 100);
+        }
+      }
 
-      function zoom(d) {
+      function zoom(d, event) {
             var focus0 = focus; focus = d;
             var slapse=500, mlapse=1500, llapse=2000;
             var transitionname = "trans".concat("_", focus.depth)
 
             // This controls how much we are zooming in or out and the speed in which we do so
             var trans = d3.transition(transitionname)
-            .duration(d3.event.altKey ? 7500 : mlapse)
+            .duration(event && event.altKey ? 7500 : mlapse)
             .delay(function(d){
               if(focus==root){
                   return slapse*1.5;
@@ -559,6 +677,9 @@
         images.attr("transform", function(d) { return "translate(" + -0.5 * (d.r * 1.99 * k) + "," + -0.5 * (d.r * 1.99 * k) + ")"; });
 
       }
+    })
+    .catch(error => {
+      console.error('Error loading flare.json:', error);
     });
 
 

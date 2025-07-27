@@ -1,0 +1,252 @@
+@font-face {
+  font-family: 'League Mono';
+  src: url('../font/LeagueMono-Light.eot'); /* IE9 Compat Modes */
+  src: url('../font/LeagueMono-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../font/LeagueMono-Light.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../font/LeagueMono-Light.woff') format('woff'), /* Pretty Modern Browsers */
+       url('../font/LeagueMono-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../font/LeagueMono-Light.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+body {
+  z-index: -1;
+  margin:0;
+  padding-top: 0%;
+  padding-bottom: 0%;
+  padding-left: 0%;
+  padding-right: 0%;
+  --dark-blue: #1D6479;
+  --light-blue: rgba(219, 240, 240, 0.5);
+  font-family: League Mono;
+}
+
+#firstpage1 {
+    font-size: 56px;
+}
+
+#firstpage2 {
+    font-size: 36px;
+}
+
+.moltgran {
+       font-size: 12px;
+}
+
+.gran {
+       font-size: 11px;
+}
+
+.petit {
+       font-size: 10px;
+}
+
+.mini {
+       font-size: 9px;
+}
+
+.description-column {
+    font-size: 90%;
+}
+
+.paper-title {
+    font-size: 1.15rem;
+}
+
+#icons3 {
+   padding-top:0.8em;
+}
+
+#icons2 {
+   padding-left:0.5em;
+   padding-right:0.5em;
+}
+
+#icons1 {
+    color:#2e3436;
+    font-size: 1.3em;
+}
+.center-im {
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.node {
+  cursor: pointer;
+  stroke-width: 0.8px;
+}
+
+.node:hover {
+  stroke: black;
+  stroke-width: 2.5px;
+}
+
+.node--leaf {
+  fill: white;
+}
+
+.label {
+  font-family: League Mono;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 11px;
+  text-anchor: middle;
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+}
+
+.label,
+.node--root,
+.node--leaf {
+  pointer-events: none;
+}
+
+.clearfix {
+    clear: both;
+}
+
+/* Note: SVG container and content positioning moved back to orientation-specific files */
+
+main .major-section:nth-child(even) {
+    background-color: var(--light-blue);
+}
+
+.small {
+    font-size: 85%;
+}
+
+a,
+a:focus,
+a:hover,
+.btn-link {
+    color: var(--dark-blue);
+}
+
+.section-title {
+    font-variant: small-caps;
+    font-weight: 100;
+}
+
+summary {
+    outline: none;
+}
+
+.more-details {
+    padding-top: 7px;
+    padding-left: 20px;
+    font-style: italic;
+    font-weight: lighter;
+}
+
+.more-details-lead {
+    font-weight: normal;
+}
+
+.img-thumbnail {
+  border: 1px #969696 solid;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary:hover {
+    text-decoration: underline;
+}
+
+.arrow{
+    display: none;
+}
+
+.arrow a {
+  position: relative;
+  pointer-events: all;
+  transition: opacity .3s;
+}
+.arrow a:hover {
+  opacity: .5;
+}
+
+.arrow a {
+  padding-top: 0px;
+}
+
+.arrow a span {
+  position: absolute;
+  border-left: 1.5px solid #000000;
+  border-bottom: 1.5px solid #000000;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  box-sizing: border-box;
+}
+
+#blurrystuff_t, #blurrystuff_b {
+   display: none;
+   position: absolute;
+   pointer-events: none;
+}
+
+.collapsing {
+    transition: height 1.5s;
+}
+
+code {
+    font-family: monospace;
+	background-color: #d9d9d9;
+    display: inline-block; 
+	color: #252525;
+}
+
+.row {
+  margin: 15px 0px;
+}
+
+#codebox {
+	border: 0.5px dotted black;
+	background-color: #d9d9d9;
+	margin-left: 0%;
+	margin-right: 5%;
+}
+
+.jumbotron {
+  padding-left: 6%;
+  padding-right: 6%;
+  padding-bottom: 5%;
+  padding-top: 5%;
+}
+
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 15px 0px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  z-index: 5000;
+}
+
+.button2 {
+  background-color: white; 
+  color: black; 
+  border: 1px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.container-projects-content{
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 5%;
+  padding-top: 0%;
+} 
