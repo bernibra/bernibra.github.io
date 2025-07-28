@@ -1,4 +1,15 @@
 
+<div class="container-projects">
+
+<header>
+<div class="jumbotron-header">
+<div class="container-header">
+  <h1 class = "moltgran">Scientific Publications</h1>
+  <p class = "petit">My research contributions to the scientific community</p>
+</div>
+</div>
+</header>
+
 <div class="container">
     <div class="row pb-1" id="latest-publications-row"></div>
 </div>
@@ -207,7 +218,7 @@ function createPaper(paper){
   descColumn.classList.add("petit")
   // Create title
   var paperTitle = document.createElement("h3")
-  paperTitle.classList.add("paper-title")
+  paperTitle.classList.add("petit")
   if(paper.oa){
     var thisTitle = paper.title + " <i class='ai ai-open-access'></i>"
   } else {
@@ -225,7 +236,7 @@ function createPaper(paper){
   // doi
   var doiP = document.createElement("p")
   doiP.classList.add("petit")
-  doiP.classList.add("small")
+  doiP.classList.add("mini")
   var doiLink = document.createElement("a")
   doiLink.setAttribute("href", paper.doi)
   doiLink.setAttribute("rel", "external")
