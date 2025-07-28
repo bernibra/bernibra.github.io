@@ -62,36 +62,15 @@
 		mimeType: "text/html; charset=utf-8",
 		success: function(result){
 		    $("#htmlcontent").html(result);
+		    
+		    // Add event handlers to prevent zoom when clicking on links
+		    $("#htmlcontent a").on("click", function(event) {
+		        event.stopPropagation();
+		    });
                     }
 		});
     }
 
-    // Function to adjust SVG positioning for mobile portrait mode ONLY
-    function adjustSvgPosition() {
-        if (window.innerHeight > window.innerWidth) { // Portrait mode only
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            const difference = height - width;
-            const yDist = difference * 0.1; // 10% of the difference
-            
-            const svgContainer = document.querySelector('.svg-container');
-            if (svgContainer) {
-                svgContainer.style.top = `calc(50vh - ${yDist}px)`;
-            }
-        }
-        // No changes for landscape mode - let CSS handle it normally
-    }
-
-    // Call the function on page load
-    window.addEventListener('load', adjustSvgPosition);
-    
-    // Call the function on window resize
-    window.addEventListener('resize', adjustSvgPosition);
-    
-    // Call the function on orientation change
-    window.addEventListener('orientationchange', function() {
-        setTimeout(adjustSvgPosition, 100); // Small delay to ensure orientation change is complete
-    });
 
     var svg = d3.select("div#container")
             .append("svg").attr("preserveAspectRatio", "xMinYMin meet").attr("viewBox", "0 0 960 960").classed("svg-content", true),
@@ -324,9 +303,9 @@
       
       var div = d3.select("div#container").append("div").attr("id","content").style("z-index", -2000)//.style("height", svg.style("height"))
       .insert("div").attr("id", "htmlcontent");
-      d3.select("#content").append("div").classed("arrow", true)
-          .insert("a")
-          .insert("span");
+      //d3.select("#content").append("div").classed("arrow", true)
+      //    .insert("a")
+      //    .insert("span");
       d3.select("#content").insert("div").attr("id", "blurrystuff_b");
       d3.select("#content").insert("div").attr("id", "blurrystuff_t");
 
@@ -464,7 +443,11 @@
                   return function(t) { zoomTo(i(t)); };
               }else{
                   if(focus.depth==2){
-                  var i = d3.interpolateZoom(view, [focus.data.x, focus.data.y, focus.r * 1.7  + margin]);
+                    if(focus.data.name=="Data Skills" || focus.data.name=="About"){
+                      var i = d3.interpolateZoom(view, [focus.data.x, focus.data.y, focus.r * 1.7  + margin]);
+                    }else{
+                      var i = d3.interpolateZoom(view, [focus.data.x, focus.data.y, focus.r * 1.2  + margin]);
+                    }
                   }else if(focus.depth>2){
                   var i = d3.interpolateZoom(view, [focus.data.x, focus.data.y, focus.r * 1.1  + margin]);
                   }else{
@@ -567,38 +550,43 @@
             // Load HTML content
             if(focus.children.length==1 && focus!==root){
                if ( focus.depth < 3){
-                   trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")}).style("display", "inline-block")
+                   trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")})
                    .on("end", function(){
-                         if (this.scrollTop + this.clientHeight >= this.scrollHeight -1){
-                             d3.select(".arrow").style("display", "none");
-                             d3.select("#blurrystuff_b").style("display", "none");
-                             d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).transition(transitionname).style("display", "inline-block");
-                             d3.select("#content").style("z-index", 1000);
-                         } else if (this.scrollTop <= 1){
-                             d3.select(".arrow").transition(transitionname).style("display", "block");
-                             d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).transition(transitionname).style("display", "inline-block");
+                             d3.select("#htmlcontent").style("display", "inline-block");
+                             console.log(this.scrollTop, this.clientHeight, this.scrollHeight);
                              d3.select("#blurrystuff_t").style("display", "none");
                              d3.select("#content").style("z-index", 1000);
-                         }else{
-                             d3.select(".arrow").transition(transitionname).style("display", "block");
-                             d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).transition(transitionname).style("display", "inline-block");
-                             d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).transition(transitionname).style("display", "inline-block");
-                             d3.select("#content").style("z-index", 1000);
-                         }
+                             
+                             // Add event handlers to prevent zoom when clicking on links
+                             d3.select("#htmlcontent").selectAll("a").on("click", function(event) {
+                                 event.stopPropagation();
+                             });
+                             
+                             if(this.scrollTop + this.clientHeight >= this.scrollHeight-1){
+                                    d3.select("#blurrystuff_b").style("display", "none");
+                             }else{
+                                    d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).transition(transitionname).style("display", "inline-block");
+                             }                         
                      });
                }else{
-                   trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")}).style("display", "inline-block")
+                   trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")})
                    .on("end", function(){
-                         d3.select(".arrow").style("display", "none");
+                         //d3.select(".arrow").style("display", "none");
                          d3.select("#blurrystuff_b").style("display", "none");
                          d3.select("#blurrystuff_t").style("display", "none");
+                         d3.select("#htmlcontent").style("display", "inline-block");
                          d3.select("#content").style("z-index", 1000);
+                         
+                         // Add event handlers to prevent zoom when clicking on links
+                         d3.select("#htmlcontent").selectAll("a").on("click", function(event) {
+                             event.stopPropagation();
+                         });
                      });
                }
             }else{
                document.getElementById('htmlcontent').scrollTop=0;
                trans.select("#htmlcontent").style("display", "none");
-               trans.select(".arrow").style("display", "none");
+               //trans.select(".arrow").style("display", "none");
                trans.select("#blurrystuff_b").style("display", "none");
                trans.select("#blurrystuff_t").style("display", "none");
                d3.select("#content").style("z-index", -1000);
@@ -625,10 +613,29 @@
             }*/
             if(focus.depth>1){
                 d3.select("body").transition(transitionname).delay(1000).duration(1000).style("background-color", "#2e3436");
-                if(focus.depth>2){
-                    d3.select("#content").style("padding", "0%");
-                }else{
+                if(focus.data.name=="About"){
+                  
                     d3.select("#content").style("padding-top", "17%").style("padding-left", "12%").style("padding-right", "12%").style("padding-bottom", "17%");
+                    
+                    // Detect orientation and apply appropriate blur effects for About
+                    if(window.innerHeight > window.innerWidth) { // Portrait
+                        d3.select("#blurrystuff_t").style("width", "76vw").style("height", "5vw").style("margin-left", "12%").style("margin-right", "12%").style("top", "16.5vw").style("background", "linear-gradient(rgb(255,247,251,1), rgb(255,247,251,0) 100%)");
+                        d3.select("#blurrystuff_b").style("width", "76vw").style("height", "5vw").style("margin-left", "12%").style("margin-right", "12%").style("top", "78vw").style("background", "linear-gradient(rgb(255,247,251,0), rgb(255,247,251,1) 100%)");
+                    } else { // Landscape
+                        d3.select("#blurrystuff_t").style("width", "76vh").style("height", "5vh").style("margin-left", "12%").style("margin-right", "12%").style("top", "16.5vh").style("background", "linear-gradient(rgb(255,247,251,1), rgb(255,247,251,0) 100%)");
+                        d3.select("#blurrystuff_b").style("width", "76vh").style("height", "5vh").style("margin-left", "12%").style("margin-right", "12%").style("top", "78vh").style("background", "linear-gradient(rgb(255,247,251,0), rgb(255,247,251,1) 100%)");
+                    }
+                }else{
+                    d3.select("#content").style("padding", "0%");
+                    
+                    // Reset blur effects to default values based on orientation
+                    if(window.innerHeight > window.innerWidth) { // Portrait
+                        d3.select("#blurrystuff_t").style("width", "100vw").style("height", "13vw").style("margin-left", "0%").style("margin-right", "0%").style("top", "0vw").style("background", "linear-gradient(rgb(250, 248, 251,1), rgb(250, 248, 251,0) 100%)");
+                        d3.select("#blurrystuff_b").style("width", "100vw").style("height", "13vw").style("margin-left", "0%").style("margin-right", "0%").style("top", "87vw").style("background", "linear-gradient(rgb(250, 248, 251,0), rgb(250, 248, 251,1) 100%)");
+                    } else { // Landscape
+                        d3.select("#blurrystuff_t").style("width", "100vh").style("height", "13vh").style("margin-left", "0%").style("margin-right", "0%").style("top", "0vh").style("background", "linear-gradient(rgb(250, 248, 251,1), rgb(250, 248, 251,0) 100%)");
+                        d3.select("#blurrystuff_b").style("width", "100vh").style("height", "13vh").style("margin-left", "0%").style("margin-right", "0%").style("top", "87vh").style("background", "linear-gradient(rgb(250, 248, 251,0), rgb(250, 248, 251,1) 100%)");
+                    }
                 }
             }else{
                 d3.select("body").transition(transitionname).delay(500).duration(1000).style("background-color", "white");
@@ -641,29 +648,28 @@
       }
 
       
-      d3.select("#htmlcontent")
-      .on("scroll.scroller", function() {
-          if(focus.depth<3){
-            if (this.scrollTop + this.clientHeight >= this.scrollHeight-1){
-                    d3.select(".arrow").style("display", "none");
-                    d3.select("#blurrystuff_b").style("display", "none");
-                    d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).style("display", "inline-block");
-                } else if (this.scrollTop <= 1){
-                    d3.select(".arrow").style("display", "block");
-                    d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).style("display", "inline-block");
-                    d3.select("#blurrystuff_t").style("display", "none");
-                } else {
-                    d3.select(".arrow").style("display", "block");
-                    d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).style("display", "inline-block");
-                    d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).style("display", "inline-block");
-                           
-                }
-            } else {
-                d3.select(".arrow").style("display", "none");
-                d3.select("#blurrystuff_b").style("display", "none");
-                d3.select("#blurrystuff_t").style("display", "none");
-            }
-          });
+       d3.select("#htmlcontent")
+       .on("scroll.scroller", function() {
+           if(focus.depth<3){
+             if (this.scrollTop + this.clientHeight >= this.scrollHeight-1){
+                     //d3.select(".arrow").style("display", "none");
+                     d3.select("#blurrystuff_b").style("display", "none");
+                     d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).style("display", "inline-block");
+                 } else if (this.scrollTop <= 1){
+                     //d3.select(".arrow").style("display", "block");
+                     d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).style("display", "inline-block");
+                     d3.select("#blurrystuff_t").style("display", "none");
+                 } else {
+                     //d3.select(".arrow").style("display", "block");
+                     d3.select("#blurrystuff_b").style("background", "linear-gradient(".concat(focus.data.children[0].colort,",", focus.data.children[0].color," 100%)")).style("display", "inline-block");
+                     d3.select("#blurrystuff_t").style("background", "linear-gradient(".concat(focus.data.children[0].color,",", focus.data.children[0].colort,"  100%)")).style("display", "inline-block");
+                 }
+             } else {
+                 //d3.select(".arrow").style("display", "none");
+                 d3.select("#blurrystuff_b").style("display", "none");
+                 d3.select("#blurrystuff_t").style("display", "none");
+             }
+           });
       
       
       

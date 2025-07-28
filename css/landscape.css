@@ -111,23 +111,23 @@
 
 /* Blur effects for landscape */
 #blurrystuff_t {
-   width: 76vh;
-   height: 5vh;
-   margin-left: 12%;
-   margin-right: 12%;
-   top: 16.5vh;
+   width: 100vh;
+   height: 13vh;
+   margin-left: 0%;
+   margin-right: 0%;
+   top: 0vh;
    left: 0px;
-   background: linear-gradient(rgb(255,247,251,1), rgb(255,247,251,0) 100%);
+   background: linear-gradient(rgb(250, 248, 251,1), rgb(250, 248, 251,0) 100%);
 }
 
 #blurrystuff_b {
-   width: 76vh;
-   height: 5vh;
-   margin-left: 12%;
-   margin-right: 12%;
-   top: 78vh;
+   width: 100vh;
+   height: 13vh;
+   margin-left: 0%;
+   margin-right: 0%;
+   top: 87vh;
    left: 0px;
-   background: linear-gradient(rgb(255,247,251,0), rgb(255,247,251,1) 100%);
+   background: linear-gradient(rgb(250, 248, 251,0), rgb(250, 248, 251,1) 100%);
 }
 
 @media all and (max-height: 500px) and (min-height: 400px) {

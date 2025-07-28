@@ -118,7 +118,7 @@ a,
 a:focus,
 a:hover,
 .btn-link {
-    color: var(--dark-blue);
+    color: #1d6479;
 }
 
 .section-title {
@@ -200,6 +200,10 @@ code {
   margin: 15px 0px;
 }
 
+.row_resume {
+  margin-bottom: 0px;
+}
+
 #codebox {
 	border: 0.5px dotted black;
 	background-color: #d9d9d9;
@@ -210,14 +214,34 @@ code {
 .jumbotron {
   padding-left: 6%;
   padding-right: 6%;
-  padding-bottom: 5%;
+  padding-bottom: 4%;
   padding-top: 5%;
 }
 
+.jumbotron-header {
+  padding-left: 6%;
+  padding-right: 6%;
+  padding-bottom: 3%;
+  padding-top: 5%;
+  background-color: transparent;
+  position: relative;
+}
+
+.jumbotron-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88%;
+  height: 1px;
+  background-color: #b8b8b8;
+}
+
 .button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
+  background-color: transparent;
+  border: 1px solid #1d6479;
+  color: #1d6479;
   padding: 5px 5px;
   text-align: center;
   text-decoration: none;
@@ -228,15 +252,20 @@ code {
   z-index: 5000;
 }
 
+.button:hover {
+  background-color: #1d6479;
+  color: #d9d9d9;
+}
+
 .button2 {
-  background-color: white; 
-  color: black; 
-  border: 1px solid #008CBA;
+  background-color: transparent; 
+  color: #1d6479; 
+  border: 1px solid #1d6479;
 }
 
 .button2:hover {
-  background-color: #008CBA;
-  color: white;
+  background-color: #1d6479;
+  color: #d9d9d9;
 }
 
 .disabled {
@@ -250,3 +279,22 @@ code {
   padding-bottom: 5%;
   padding-top: 0%;
 } 
+
+.jumbotron h1.moltgran,
+.jumbotron-header h1.moltgran {
+    color: #134858;
+    font-weight: bold;
+} 
+
+h2.gran {
+    color: #13414e;
+} 
+
+p.gran:not(a) {
+    color: #13414e;
+} 
+
+p.gran-normal:not(a) {
+    /* Inherits font-size from .gran but uses default text color */
+    color: inherit;
+}
