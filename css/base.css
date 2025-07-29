@@ -20,30 +20,6 @@ body {
   font-family: League Mono;
 }
 
-#firstpage1 {
-    font-size: 56px;
-}
-
-#firstpage2 {
-    font-size: 36px;
-}
-
-.moltgran {
-       font-size: 12px;
-}
-
-.gran {
-       font-size: 11px;
-}
-
-.petit {
-       font-size: 10px;
-}
-
-.mini {
-       font-size: 9px;
-}
-
 .description-column {
     font-size: 90%;
 }
@@ -52,23 +28,10 @@ body {
     font-size: 1.15rem;
 }
 
-#icons3 {
-   padding-top:0.8em;
-}
-
-#icons2 {
-   padding-left:0.5em;
-   padding-right:0.5em;
-}
-
 #icons1 {
+    /* color:#2e3436;
+    font-size: 1.3em; */
     color:#2e3436;
-    font-size: 1.3em;
-}
-.center-im {
-    display: none;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .node {
