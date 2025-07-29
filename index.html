@@ -63,11 +63,50 @@
 		success: function(result){
 		    $("#htmlcontent").html(result);
 		    
-		    // Add event handlers to prevent zoom when clicking on links
-		    $("#htmlcontent a").on("click", function(event) {
-		        event.stopPropagation();
+		    // Skills Tab Panel Functionality
+		    const skillTabs = document.querySelectorAll('#htmlcontent .skill-tab');
+		    const skillContents = document.querySelectorAll('#htmlcontent .skill-content');
+		    
+		    skillTabs.forEach(tab => {
+		        tab.addEventListener('click', function() {
+		            // Remove active class from all tabs and contents
+		            skillTabs.forEach(t => t.classList.remove('active'));
+		            skillContents.forEach(c => c.classList.remove('active'));
+		            
+		            // Add active class to clicked tab
+		            this.classList.add('active');
+		            
+		            // Show corresponding content
+		            const skillId = this.getAttribute('data-skill');
+		            const content = document.getElementById(skillId);
+		            if (content) {
+		                content.classList.add('active');
+		            }
+		        });
 		    });
-                    }
+		    
+		    // Academic Service Tab Panel Functionality
+		    const academicTabs = document.querySelectorAll('#htmlcontent .academic-tab');
+		    const academicContents = document.querySelectorAll('#htmlcontent .academic-content');
+		    
+		    academicTabs.forEach(tab => {
+		        tab.addEventListener('click', function() {
+		            // Remove active class from all academic tabs and contents
+		            academicTabs.forEach(t => t.classList.remove('active'));
+		            academicContents.forEach(c => c.classList.remove('active'));
+		            
+		            // Add active class to clicked tab
+		            this.classList.add('active');
+		            
+		            // Show corresponding content
+		            const skillId = this.getAttribute('data-skill');
+		            const content = document.getElementById(skillId);
+		            if (content) {
+		                content.classList.add('active');
+		            }
+		        });
+		    });
+      }
 		});
     }
 
@@ -553,12 +592,26 @@
                    trans.select("#htmlcontent").each(function(d){loadHtml(focus.data.name+".html")})
                    .on("end", function(){
                              d3.select("#htmlcontent").style("display", "inline-block");
-                             console.log(this.scrollTop, this.clientHeight, this.scrollHeight);
                              d3.select("#blurrystuff_t").style("display", "none");
                              d3.select("#content").style("z-index", 1000);
                              
                              // Add event handlers to prevent zoom when clicking on links
                              d3.select("#htmlcontent").selectAll("a").on("click", function(event) {
+                                 event.stopPropagation();
+                             });
+                             
+                             // Add event handlers to prevent zoom when clicking on summary elements
+                             d3.select("#htmlcontent").selectAll("summary").on("click", function(event) {
+                                 event.stopPropagation();
+                             });
+                             
+                             // Add event handlers to prevent zoom when clicking on skill tabs
+                             d3.select("#htmlcontent").selectAll(".skill-tab").on("click", function(event) {
+                                 event.stopPropagation();
+                             });
+                             
+                             // Add event handlers to prevent zoom when clicking on academic tabs
+                             d3.select("#htmlcontent").selectAll(".academic-tab").on("click", function(event) {
                                  event.stopPropagation();
                              });
                              
@@ -579,6 +632,21 @@
                          
                          // Add event handlers to prevent zoom when clicking on links
                          d3.select("#htmlcontent").selectAll("a").on("click", function(event) {
+                             event.stopPropagation();
+                         });
+                         
+                         // Add event handlers to prevent zoom when clicking on summary elements
+                         d3.select("#htmlcontent").selectAll("summary").on("click", function(event) {
+                             event.stopPropagation();
+                         });
+                         
+                         // Add event handlers to prevent zoom when clicking on skill tabs
+                         d3.select("#htmlcontent").selectAll(".skill-tab").on("click", function(event) {
+                             event.stopPropagation();
+                         });
+                         
+                         // Add event handlers to prevent zoom when clicking on academic tabs
+                         d3.select("#htmlcontent").selectAll(".academic-tab").on("click", function(event) {
                              event.stopPropagation();
                          });
                      });

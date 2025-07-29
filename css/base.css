@@ -179,6 +179,7 @@ code {
   padding-right: 6%;
   padding-bottom: 4%;
   padding-top: 5%;
+  text-align: center;
 }
 
 .jumbotron-header {
@@ -188,17 +189,40 @@ code {
   padding-top: 5%;
   background-color: transparent;
   position: relative;
+  text-align: center;
 }
 
-.jumbotron-header::after {
+/* Add border around the header content */
+.container-header {
+  position: relative;
+  padding: 20px;
+  margin: 10px;
+}
+
+/* Corner accents using pseudo-elements */
+.container-header::before,
+.container-header::after {
   content: '';
   position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #1d6479;
+}
+
+/* Top-left corner */
+.container-header::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+/* Bottom-right corner */
+.container-header::after {
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 88%;
-  height: 1px;
-  background-color: #b8b8b8;
+  right: 0;
+  border-left: none;
+  border-top: none;
 }
 
 .button {
@@ -260,4 +284,180 @@ p.gran:not(a) {
 p.gran-normal:not(a) {
     /* Inherits font-size from .gran but uses default text color */
     color: inherit;
+}
+
+/* Collapsible sections styling */
+.experience-details,
+.education-details {
+    margin-top: 10px;
+}
+
+.see-all-btn {
+    cursor: pointer;
+    padding: 8px 0;
+    margin: 5px 0;
+    border: none;
+    background: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.see-all-btn:hover {
+    border-bottom: 1px solid #1d6479;
+}
+
+.see-all-text {
+    font-family: League Mono;
+    font-size: 0.85rem;
+    color: #42646f;
+    text-transform: lowercase;
+    letter-spacing: 0.5px;
+    margin-right: 8px;
+}
+
+.see-all-icon {
+    font-family: League Mono;
+    font-size: 1rem;
+    color: #1d6479;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+details[open] .see-all-icon {
+    transform: rotate(45deg);
+}
+
+/* Hide default details marker */
+details > summary::-webkit-details-marker {
+    display: none;
+}
+
+details > summary::marker {
+    display: none;
+}
+
+/* Skills Tab Panel Styles */
+.skills-tab-panel {
+    background-color: #fbf8f8;
+    border: 1px solid rgba(237, 235, 238, 0.8);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.skill-tab {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(237, 235, 238, 0.4);
+    transition: all 0.3s ease;
+    background-color: transparent;
+    opacity: 0.7;
+}
+
+.skill-tab:last-child {
+    border-bottom: none;
+}
+
+.skill-tab:hover {
+    background-color: rgba(237, 235, 238, 0.3);
+    opacity: 1;
+}
+
+.skill-tab.active {
+    background-color: transparent;
+    color: #1d6479;
+    border: 1px solid #1d6479;
+    opacity: 1;
+}
+
+.skill-tab.active .skill-tab-text {
+    font-weight: bold;
+}
+
+.skill-tab-text {
+    font-family: League Mono;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.skills-content-panel {
+    background-color: transparent;
+    padding: 20px;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+}
+
+.skill-content {
+    display: none;
+    width: 100%;
+}
+
+.skill-content.active {
+    display: block;
+}
+
+/* Academic Service Tab Panel Styles */
+.academic-tab-panel {
+    background-color: #fbf8f8;
+    border: 1px solid rgba(237, 235, 238, 0.8);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.academic-tab {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(237, 235, 238, 0.4);
+    transition: all 0.3s ease;
+    background-color: transparent;
+    opacity: 0.7;
+}
+
+.academic-tab:last-child {
+    border-bottom: none;
+}
+
+.academic-tab:hover {
+    background-color: rgba(237, 235, 238, 0.3);
+    opacity: 1;
+}
+
+.academic-tab.active {
+    background-color: transparent;
+    color: #1d6479;
+    border: 1px solid #1d6479;
+    opacity: 1;
+}
+
+.academic-tab.active .academic-tab-text {
+    font-weight: bold;
+}
+
+.academic-tab-text {
+    font-family: League Mono;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.academic-content-panel {
+    background-color: transparent;
+    padding: 20px;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+}
+
+.academic-content {
+    display: none;
+    width: 100%;
+}
+
+.academic-content.active {
+    display: block;
 }
