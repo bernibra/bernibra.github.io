@@ -1,5 +1,7 @@
 /* Portrait-specific overrides and media queries only. Shared rules are now in base.css. */
 
+/* TODO: Consider updating screen sizing to use font-size: clamp(38px, calc(50px - (1.7vh)), 50px); for better responsive typography */
+
 /* SVG container and content positioning for portrait orientation */
 .svg-container {
     display: inline-block;
@@ -130,165 +132,51 @@
    background: linear-gradient(rgb(250, 248, 251,0), rgb(250, 248, 251,1) 100%);
 }
 
-@media all and (max-width: 500px) and (min-width: 400px) {
-    #firstpage1 {
-        font-size: 50px;
-    }
-    #firstpage2 {
-        font-size: 32px;
-    }
-   .moltgran {
-       font-size: 3.3vw;
-      }
-   .gran {
-       font-size: 3vw;
-      }
-   .petit {
-       font-size: 2.7vw;
-      }
-   .mini {
-       font-size: 2.6vw;
-    }
-   #icons3 {
-      padding-top:1.2em;
-   }
-
-   #icons2 {
-      padding-left:0.65em;
-      padding-right:0.65em;
-   }
-
-   #icons1 {
-       color:#2e3436;
-       font-size: 1.5em;
-   }
-   .center-im {
-       display: none;
-       margin-left: auto;
-       margin-right: auto;
-   }
-
+/* New clamp-based font-size for firstpage1 in portrait */
+#firstpage1 {
+    font-size: clamp(38px, calc(74px - (5.14vw)), 56px);
 }
 
-@media all and (max-width: 600px) and (min-width: 500px) {
-    #firstpage1 {
-        font-size: 44px;
-    }
-
-    #firstpage2 {
-        font-size: 28px;
-    }
-   .moltgran {
-       font-size: 2.8vw;
-      }
-   .gran {
-       font-size: 2.5vw;
-      }
-   .petit {
-       font-size: 2.2vw;
-      }
-    .mini {
-       font-size: 2.1vw;
-    }
-   #icons3 {
-      padding-top:2em;
-   }
-
-   #icons2 {
-      padding-left:0.85em;
-      padding-right:0.85em;
-   }
-
-   #icons1 {
-       color:#2e3436;
-       font-size: 1.7em;
-   }
-   .center-im {
-       display: none;
-       margin-left: auto;
-       margin-right: auto;
-   }
-
+/* New clamp-based font-size for firstpage2 in portrait */
+#firstpage2 {
+    font-size: clamp(22px, calc(50px - (4vw)), 36px);
 }
 
-@media all and (max-width: 700px) and (min-width: 600px) {
-    #firstpage1 {
-        font-size: 40px;
-    }
-
-    #firstpage2 {
-        font-size: 24px;
-    }
-   .moltgran {
-       font-size: 23px;
-      }
-   .gran {
-       font-size: 18px;
-      }
-   .petit {
-       font-size: 13px;
-      }
-   .mini {
-       font-size: 12px;
-    }
-
-   #icons3 {
-      padding-top:2em;
-   }
-
-   #icons2 {
-      padding-left:1em;
-      padding-right:1em;
-   }
-
-   #icons1 {
-       color:#2e3436;
-       font-size: 2em;
-   }
-   .center-im {
-       display: block;
-       margin-left: auto;
-       margin-right: auto;
-   }
+/* New clamp-based font-size for moltgran in portrait */
+.moltgran {
+    font-size: clamp(12px, calc(5px + (2vw)), 27px);
 }
 
-@media all and (min-width: 700px) {
-    #firstpage1 {
-        font-size: 38px;
-    }
+/* New clamp-based font-size for gran in portrait */
+.gran {
+    font-size: clamp(11px, calc(5.86px + (1.47vw)), 22px);
+}
 
-    #firstpage2 {
-        font-size: 22px;
-    }
-   .moltgran {
-       font-size: 27px;
-      }
-   .gran {
-       font-size: 22px;
-      }
-   .petit {
-       font-size: 17px;
-      }
-   .mini {
-       font-size: 16px;
-      }
+/* New clamp-based font-size for petit in portrait */
+.petit {
+    font-size: clamp(10px, calc(6.75px + (0.93vw)), 17px);
+}
 
-   #icons3 {
-      padding-top:2em;
-   }
+/* New clamp-based font-size for mini in portrait */
+.mini {
+    font-size: clamp(9px, calc(5.75px + (0.93vw)), 16px);
+}
 
-   #icons2 {
-      padding-left:1.1em;
-      padding-right:1.1em;
-   }
+/* New clamp-based font-size for icons1 in portrait */
+#icons1 {
+    color:#2e3436;
+    font-size: clamp(1.3em, calc(-0.1em + (0.4vw)), 3.5em);
+}
 
-   #icons1 {
-       color:#2e3436;
-       font-size: 2.1em;
-   }
-   .center-im {
-       display: block;
-       margin-left: auto;
-       margin-right: auto;
-   }
+#icons2 {
+  /* padding-left:0.5em;
+  padding-right:0.5em; */
+  padding-left: clamp(0.5em, calc(-0.1em + (0.171vw)), 1.1em);
+  padding-right: clamp(0.5em, calc(-0.1em + (0.171vw)), 1.1em);
+}
+
+
+#icons3 {
+  /* padding-top:0.8em; */
+  padding-top: clamp(0.8em, calc(-0.88em + (0.48vw)), 2em);
 }
