@@ -93,12 +93,12 @@
      ]
     },
     {
-     "name": "Conferences",
+     "name": "Pet Projects",
      "color":"#f5f5f5",
      "stroke":"#525252",
      "padding":2,
      "switch":"on",
-     "img":"images/conferences.png",
+     "img":"images/lightbulb.png",
      "position":-50,
      "x":750,
      "y":470,

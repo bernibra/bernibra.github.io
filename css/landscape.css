@@ -152,6 +152,17 @@
     font-size: clamp(11px, calc(6.35px + (1.33vh)), 21px);
 }
 
+/* New about-text class for portrait */
+.about-text {
+  font-size: clamp(10px, calc(2.856px + (1.905vh)), 20px);
+}
+
+/* Profile column styling */
+#profile-about-style {
+margin-top: clamp(0px, calc(0px + (5.714vh - 21.429px)), 30px);
+  /* Empty class for future styling */
+}
+
 /* New clamp-based font-size for petit in landscape */
 .petit {
     font-size: clamp(10px, calc(6.26px + (1.07vh)), 18px);
@@ -165,7 +176,7 @@
 /* New clamp-based font-size for icons1 in landscape */
 #icons1 {
     color:#2e3436;
-    font-size: clamp(1.3em, calc(-0.1em + (0.4vh)), 3.5em);
+    font-size: clamp(15px, calc(5.455px + (2.727vh)), 30px);
 }
 
 #icons2 {

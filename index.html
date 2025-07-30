@@ -115,13 +115,24 @@
             .append("svg").attr("preserveAspectRatio", "xMinYMin meet").attr("viewBox", "0 0 960 960").classed("svg-content", true),
         margin = 20,
         smallr = 3.5,
-        fzinitial = "25px",
-        fzfocus = "70px",
         diameter = 960
 
-    if (screen.width<400){
-        fzinitial = "30px";
+    // Clamp-like function for responsive font sizes
+    function clampFontSize(min, max, sm, lg) {
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const smallerDimension = Math.min(vw, vh);
+        
+        const x = (max - min) / (lg - sm);
+        const y = max + x * sm;
+        
+        const fontSize = Math.min(Math.max(y - x * smallerDimension * 0.01, min), max);
+        return fontSize + "px";
     }
+
+
+    var fzinitial = clampFontSize(20, 28, 3.5, 7);
+    var fzfocus = clampFontSize(50, 65, 3.5, 7);
 
 
     var gtext = svg.append("g").attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
