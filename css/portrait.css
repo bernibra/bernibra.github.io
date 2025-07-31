@@ -154,7 +154,7 @@
 
 /* New about-text class for portrait */
 .about-text {
-    font-size: clamp(10px, calc(2.856px + (1.905vw)), 20px);
+    font-size: clamp(10px, calc(0.952px + (2.381vw)), 20px);
 }
 
 /* Profile column styling */
@@ -176,18 +176,23 @@
 /* New clamp-based font-size for icons1 in portrait */
 #icons1 {
     color:#2e3436;
-    font-size: clamp(15px, calc(5.455px + (2.727vw)), 30px);
+    font-size: clamp(15px, calc(4.444vw - 0.556px), 35px);
 }
 
 #icons2 {
   /* padding-left:0.5em;
   padding-right:0.5em; */
-  padding-left: clamp(0.5em, calc(-0.1em + (0.171vw)), 1.1em);
-  padding-right: clamp(0.5em, calc(-0.1em + (0.171vw)), 1.1em);
+  padding-left: clamp(7px, calc((2.889vw) - 3.111px), 20px);
+  padding-right: clamp(7px, calc((2.889vw) - 3.111px ), 20px);
 }
 
 
 #icons3 {
   /* padding-top:0.8em; */
-  padding-top: clamp(0.8em, calc(-0.88em + (0.48vw)), 2em);
+  padding-top: clamp(5px, calc((3.333vw) - 6.667px), 20px);
+  margin-bottom: clamp(15px, calc(7.222px + (2.222vw)), 25px);
 }
+
+#padding_control_id{
+  margin-top: clamp(30px, calc(5.625px + (3.75vw)), 60px);
+} 
