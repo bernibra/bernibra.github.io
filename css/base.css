@@ -260,13 +260,6 @@ code {
   cursor: not-allowed;
 }
 
-.container-projects-content{
-  padding-left: 3%;
-  padding-right: 3%;
-  padding-bottom: 5%;
-  padding-top: 0%;
-} 
-
 .jumbotron h1.moltgran,
 .jumbotron-header h1.moltgran {
     color: #134858;
